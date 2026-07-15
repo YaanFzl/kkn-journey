@@ -66,7 +66,7 @@
   --font-mono:    'Courier Prime', 'Courier New', Courier, monospace;
 
   /* Fluid font scale — tablet-optimized */
-  --fs-hero: clamp(3.2rem, 7.5vw, 6.5rem);
+  --fs-hero: clamp(2.4rem, 7.5vw, 6.5rem);
   --fs-2xl:  clamp(2.4rem, 4.5vw, 4rem);
   --fs-xl:   clamp(1.9rem, 3vw, 2.8rem);
   --fs-lg:   clamp(1.3rem, 2vw, 1.75rem);
@@ -203,6 +203,12 @@ img { display: block; max-width: 100%; height: auto; }
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--sp-8);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 var(--sp-5);
+  }
 }
 
 .section-pad { padding: var(--sp-16) 0; }

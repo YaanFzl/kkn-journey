@@ -1,0 +1,1011 @@
+/* ============================================================
+   KKN Journey — sections.css (Historical Book Edition)
+   Per-section layouts: Hero, About, Timeline, Gallery,
+   Impact, Farewell, Lightbox (with Book-Peek Panels)
+   ============================================================ */
+
+/* ==============================
+   HERO — Book Cover / Opening Page
+   ============================== */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding-top: 60px; /* navbar height */
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/images/hero.png');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* Multi-layer sepia overlay for book-cover feel */
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(12,8,5,0.82) 0%, rgba(12,8,5,0.55) 55%, rgba(12,8,5,0.2) 100%),
+    linear-gradient(to bottom, rgba(12,8,5,0.3) 0%, transparent 30%, transparent 60%, rgba(12,8,5,0.5) 100%);
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(90,55,20,0.25);
+  mix-blend-mode: multiply;
+}
+
+/* Vertical ruled lines (decorative, like book margins) */
+.hero-margin-rule {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 5%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(194,160,112,0.18) 20%, rgba(194,160,112,0.18) 80%, transparent);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: var(--sp-16) var(--sp-16) var(--sp-12);
+  max-width: 720px;
+}
+
+/* Book chapter header */
+.hero-chapter-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-8);
+}
+
+.hero-chapter-rule {
+  flex: 1;
+  height: 1px;
+  max-width: 80px;
+  background: linear-gradient(to right, rgba(194,160,112,0.4), transparent);
+}
+
+.hero-eyebrow {
+  font-family: var(--font-caps);
+  font-size: 0.68rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+  opacity: 0.9;
+}
+
+/* Main title */
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-hero);
+  font-style: italic;
+  color: var(--parchment-300);
+  line-height: 1.05;
+  margin-bottom: var(--sp-5);
+  text-shadow: 2px 4px 20px rgba(12,8,5,0.5);
+}
+
+.hero-title .book-accent {
+  font-style: normal;
+  color: var(--gold-300);
+  display: block;
+  font-size: 0.58em;
+  letter-spacing: 0.1em;
+  font-family: var(--font-caps);
+  margin-bottom: var(--sp-3);
+}
+
+/* Subtitle / typing text */
+.hero-subtitle {
+  font-family: var(--font-light);
+  font-size: var(--fs-lg);
+  font-style: italic;
+  color: rgba(249,245,234,0.82);
+  margin-bottom: var(--sp-6);
+  line-height: 1.5;
+  min-height: 2.2em;
+}
+
+/* Date badge — book cover style */
+.hero-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 8px 20px;
+  border: 1px solid rgba(194,160,112,0.35);
+  border-radius: var(--radius-sm);
+  background: rgba(12,8,5,0.35);
+  backdrop-filter: blur(6px);
+  margin-bottom: var(--sp-8);
+}
+
+.hero-date-badge-text {
+  font-family: var(--font-caps);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--gold-300);
+  text-transform: uppercase;
+}
+
+.hero-date-sep {
+  color: rgba(194,160,112,0.5);
+  font-size: 0.6rem;
+}
+
+/* Meta items */
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-10);
+}
+
+.hero-meta-label {
+  font-family: var(--font-caps);
+  font-size: 0.58rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(194,160,112,0.65);
+}
+
+.hero-meta-value {
+  font-family: var(--font-light);
+  font-size: var(--fs-md);
+  font-style: italic;
+  color: var(--parchment-400);
+}
+
+.hero-meta-item { display: flex; flex-direction: column; gap: 3px; }
+.hero-meta-sep  { width: 1px; height: 32px; background: rgba(194,160,112,0.25); }
+
+/* CTA Buttons */
+.hero-cta {
+  display: flex;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+
+/* Scroll hint */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: var(--sp-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  z-index: 2;
+}
+
+.hero-scroll-hint-text {
+  font-family: var(--font-caps);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(194,160,112,0.6);
+}
+
+.scroll-mouse {
+  width: 22px;
+  height: 36px;
+  border: 1.5px solid rgba(194,160,112,0.4);
+  border-radius: 11px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.scroll-mouse-dot {
+  width: 3px;
+  height: 8px;
+  background: rgba(194,160,112,0.6);
+  border-radius: 2px;
+  animation: scrollDot 1.8s ease infinite;
+}
+
+@keyframes scrollDot {
+  0%   { transform: translateY(0); opacity: 1; }
+  80%  { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+
+/* Right-side decorative element (book spine) */
+.hero-spine {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: linear-gradient(to bottom, var(--crimson) 0%, var(--gold) 50%, var(--crimson) 100%);
+  opacity: 0.6;
+  z-index: 2;
+}
+
+/* ==============================
+   ABOUT — Two-column Journal Layout
+   ============================== */
+#about {
+  background: var(--parchment-300);
+  position: relative;
+  padding: var(--sp-16) 0;
+}
+
+/* Paper-fold top edge */
+#about::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--parchment-800), transparent);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: var(--sp-12);
+  align-items: start;
+}
+
+.about-image-wrap {
+  position: relative;
+}
+
+.about-image-container {
+  position: relative;
+  padding: 12px;
+  background: var(--parchment-200);
+  box-shadow: var(--shadow-md), var(--shadow-page);
+}
+
+.about-image-container::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(168,116,32,0.3);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.about-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  filter: sepia(20%) contrast(1.06) brightness(0.97) saturate(0.88);
+}
+
+.about-photo-caption {
+  margin-top: var(--sp-3);
+  font-family: var(--font-light);
+  font-size: var(--fs-xs);
+  font-style: italic;
+  color: var(--ink-400);
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.about-wax-stamp {
+  position: absolute;
+  bottom: -24px;
+  right: -20px;
+  z-index: 5;
+}
+
+.about-content {
+  padding-top: var(--sp-4);
+}
+
+/* margin-line decoration */
+.about-content .margin-line {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-4);
+}
+
+.about-margin-mark {
+  flex-shrink: 0;
+  width: 1px;
+  background: rgba(168,116,32,0.3);
+  align-self: stretch;
+  margin-top: 4px;
+}
+
+.about-text {
+  font-family: var(--font-serif);
+  font-size: var(--fs-base);
+  color: var(--ink-500);
+  line-height: 1.9;
+}
+
+.about-quote-block {
+  margin: var(--sp-6) 0;
+  padding: var(--sp-4) var(--sp-5);
+  border-left: 3px solid var(--gold);
+  background: var(--parchment-200);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.about-quote-block p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-md);
+  color: var(--sepia);
+  margin: 0;
+}
+
+.about-badge-row {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  margin-top: var(--sp-5);
+}
+
+@media (max-width: 860px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-image-wrap { max-width: 380px; margin: 0 auto; }
+}
+
+/* ==============================
+   TIMELINE — Roman Numeral Chapters
+   ============================== */
+#timeline {
+  background: var(--parchment-400);
+  padding: var(--sp-16) 0;
+  position: relative;
+}
+
+#timeline::before,
+#timeline::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--parchment-800), transparent);
+  margin: 0 var(--sp-8);
+}
+
+.timeline-header {
+  text-align: center;
+  margin-bottom: var(--sp-12);
+}
+
+.timeline-header .chapter-eyebrow {
+  justify-content: center;
+}
+
+.timeline-header .chapter-eyebrow::before,
+.timeline-header .chapter-eyebrow::after {
+  max-width: 80px;
+}
+
+/* Chapter grid — 4 columns desktop */
+.weeks-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-5);
+}
+
+.week-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Week header strip */
+.week-header-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  background: linear-gradient(135deg, var(--parchment-400), var(--parchment-500));
+  border-bottom: 1px solid var(--parchment-800);
+}
+
+.week-roman {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-style: italic;
+  color: var(--crimson);
+  line-height: 1;
+}
+
+.week-number {
+  font-family: var(--font-caps);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+@media (max-width: 1024px) {
+  .weeks-container { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .weeks-container { grid-template-columns: 1fr; }
+}
+
+/* ==============================
+   GALLERY — Vintage Photo Exhibition
+   ============================== */
+#gallery {
+  background: var(--parchment-300);
+  padding: var(--sp-16) 0;
+  position: relative;
+}
+
+/* ==============================
+   LIGHTBOX — Book Journal Detail
+   ============================== */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(12, 8, 5, 0.92);
+  backdrop-filter: blur(20px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Parchment vignette overlay inside lightbox */
+#lightbox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(12,8,5,0.4) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#lightbox-close {
+  position: absolute;
+  top: var(--sp-6);
+  right: var(--sp-6);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(194,160,112,0.3);
+  background: rgba(12,8,5,0.6);
+  color: var(--parchment-400);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+  z-index: 20;
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+#lightbox-close:hover {
+  background: rgba(125,29,14,0.35);
+  border-color: rgba(125,29,14,0.5);
+}
+
+/* Main content pane */
+.lightbox-container {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: row;
+  width: 88%;
+  max-width: 980px;
+  height: auto;
+  max-height: 78vh;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(12,8,5,0.6), 0 2px 8px rgba(12,8,5,0.3);
+  border: 1px solid rgba(194,160,112,0.15);
+}
+
+/* Photo pane */
+.lightbox-image-pane {
+  flex: 1.2;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink-900);
+  min-height: 320px;
+}
+
+#lightbox-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: sepia(10%) contrast(1.05) brightness(0.98);
+}
+
+/* Frame overlay on the photo */
+.lightbox-image-pane::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(168,116,32,0.25);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Info pane — parchment journal page */
+.lightbox-info-pane {
+  flex: 1;
+  min-width: 280px;
+  background: var(--parchment-300);
+  padding: var(--sp-8) var(--sp-6);
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--parchment-800);
+  overflow-y: auto;
+}
+
+/* Red margin line */
+.lightbox-info-pane::before {
+  content: '';
+  position: absolute;
+  left: calc(88% / 12 * 5 + 88% * 0.55);
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: rgba(125,29,14,0.15);
+  pointer-events: none;
+  display: none;
+}
+
+.lightbox-meta {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-4);
+}
+
+#lightbox-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-style: italic;
+  color: var(--ink-800);
+  line-height: 1.25;
+  margin-bottom: var(--sp-3);
+}
+
+.lightbox-location {
+  font-family: var(--font-light);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  color: var(--crimson);
+  margin-bottom: var(--sp-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* Ornamental rule inside lightbox */
+.lightbox-info-pane::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(to right, var(--parchment-800), transparent);
+  margin: var(--sp-4) 0;
+}
+
+.lightbox-desc {
+  font-family: var(--font-serif);
+  font-size: var(--fs-sm);
+  color: var(--ink-500);
+  line-height: 1.85;
+  flex: 1;
+}
+
+.lightbox-counter {
+  font-family: var(--font-caps);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-400);
+  margin-top: auto;
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--parchment-700);
+}
+
+/* ——— Book-Style Side Peek Panels ——— */
+.lightbox-peek {
+  position: absolute;
+  top: 50%;
+  width: 100px;
+  height: 62%;
+  max-height: 440px;
+  min-height: 200px;
+  overflow: hidden;
+  cursor: none;
+  border-radius: var(--radius-sm);
+  transition:
+    width 0.4s var(--ease-spring),
+    opacity 0.4s ease,
+    transform 0.4s var(--ease-spring),
+    box-shadow 0.4s ease;
+  z-index: 5;
+  user-select: none;
+  box-shadow: 0 8px 32px rgba(12,8,5,0.55);
+}
+
+.lightbox-peek img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  filter: sepia(30%) contrast(1.02) brightness(0.88);
+}
+
+.lightbox-peek-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.lightbox-peek-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: rgba(249,245,234,0.75);
+  pointer-events: none;
+  text-shadow: 0 2px 8px rgba(12,8,5,0.6);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  line-height: 1;
+}
+
+/* Prev peek */
+.lightbox-peek-prev {
+  left: 18px;
+  transform: translateY(-50%) perspective(700px) rotateY(22deg) scaleX(0.88);
+  transform-origin: left center;
+  opacity: 0.42;
+  border-radius: 3px 8px 8px 3px;
+  border: 1px solid rgba(194,160,112,0.15);
+  border-left: 3px solid var(--gold-400);
+}
+
+.lightbox-peek-prev .lightbox-peek-shade {
+  background: linear-gradient(to right, rgba(12,8,5,0.72) 0%, rgba(12,8,5,0.18) 60%, transparent 100%);
+}
+
+.lightbox-peek-prev .lightbox-peek-arrow { left: 10px; }
+
+.lightbox-peek-prev:hover {
+  width: 140px;
+  opacity: 0.8;
+  transform: translateY(-50%) perspective(700px) rotateY(10deg) scaleX(0.95);
+  box-shadow: 4px 8px 40px rgba(12,8,5,0.65);
+}
+
+.lightbox-peek-prev:hover .lightbox-peek-arrow {
+  transform: translateY(-50%) translateX(-3px);
+}
+
+/* Next peek */
+.lightbox-peek-next {
+  right: 18px;
+  transform: translateY(-50%) perspective(700px) rotateY(-22deg) scaleX(0.88);
+  transform-origin: right center;
+  opacity: 0.42;
+  border-radius: 8px 3px 3px 8px;
+  border: 1px solid rgba(194,160,112,0.15);
+  border-right: 3px solid var(--gold-400);
+}
+
+.lightbox-peek-next .lightbox-peek-shade {
+  background: linear-gradient(to left, rgba(12,8,5,0.72) 0%, rgba(12,8,5,0.18) 60%, transparent 100%);
+}
+
+.lightbox-peek-next .lightbox-peek-arrow { right: 10px; }
+
+.lightbox-peek-next:hover {
+  width: 140px;
+  opacity: 0.8;
+  transform: translateY(-50%) perspective(700px) rotateY(-10deg) scaleX(0.95);
+  box-shadow: -4px 8px 40px rgba(12,8,5,0.65);
+}
+
+.lightbox-peek-next:hover .lightbox-peek-arrow {
+  transform: translateY(-50%) translateX(3px);
+}
+
+/* ——— Responsive Lightbox ——— */
+@media (max-width: 900px) {
+  .lightbox-peek { width: 65px; max-height: 300px; }
+  .lightbox-peek-prev { left: 6px; }
+  .lightbox-peek-next { right: 6px; }
+  .lightbox-container { width: calc(100% - 140px); }
+}
+
+@media (max-width: 768px) {
+  .lightbox-peek { display: none; }
+  .lightbox-container {
+    flex-direction: column;
+    max-height: 80vh;
+    width: 95%;
+  }
+  .lightbox-image-pane { flex: none; aspect-ratio: 4/3; }
+  .lightbox-info-pane  { flex: 1; padding: var(--sp-5); border-left: none; border-top: 1px solid var(--parchment-700); }
+}
+
+/* Hidden btn (navigation via peek panels) */
+.lightbox-btn { display: none; }
+
+/* ==============================
+   IMPACT — Catatan Lapangan (Field Notes)
+   ============================== */
+#impact {
+  background: var(--ink-700);
+  padding: var(--sp-16) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Aged paper texture on dark background */
+#impact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* Decorative corner ornaments */
+#impact::after {
+  content: '';
+  position: absolute;
+  top: var(--sp-6);
+  left: var(--sp-6);
+  right: var(--sp-6);
+  bottom: var(--sp-6);
+  border: 1px solid rgba(168,116,32,0.12);
+  pointer-events: none;
+  border-radius: var(--radius-sm);
+}
+
+.impact-header {
+  text-align: center;
+  margin-bottom: var(--sp-12);
+  position: relative;
+  z-index: 1;
+}
+
+.impact-header .chapter-eyebrow {
+  color: var(--gold-300);
+  justify-content: center;
+}
+
+.impact-header .chapter-eyebrow::before,
+.impact-header .chapter-eyebrow::after {
+  background: rgba(168,116,32,0.25);
+  max-width: 80px;
+}
+
+.impact-header .section-heading {
+  color: var(--parchment-400);
+}
+
+.impact-header p {
+  color: var(--parchment-800);
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-5);
+  margin-bottom: var(--sp-10);
+  position: relative;
+  z-index: 1;
+}
+
+.impact-card {
+  background: rgba(249,245,234,0.04);
+  border: 1px solid rgba(194,160,112,0.15);
+  padding: var(--sp-6) var(--sp-5);
+  text-align: center;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-base);
+  position: relative;
+}
+
+.impact-card::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(168,116,32,0.1);
+  pointer-events: none;
+}
+
+.impact-card:hover { background: rgba(249,245,234,0.07); }
+
+.impact-icon { font-size: 2.2rem; margin-bottom: var(--sp-4); display: block; }
+
+.impact-num {
+  font-family: var(--font-light);
+  font-size: var(--fs-2xl);
+  font-style: italic;
+  color: var(--gold-300);
+  line-height: 1;
+  margin-bottom: var(--sp-2);
+}
+
+.impact-label {
+  font-family: var(--font-caps);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--parchment-800);
+}
+
+/* Progress bars */
+.impact-bars {
+  position: relative;
+  z-index: 1;
+}
+
+.impact-bar-row {
+  margin-bottom: var(--sp-5);
+}
+
+.impact-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--sp-2);
+}
+
+.impact-bar-label {
+  font-family: var(--font-serif);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  color: var(--parchment-600);
+}
+
+.impact-bar-pct {
+  font-family: var(--font-light);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  color: var(--gold-400);
+}
+
+.impact-bar-track {
+  height: 3px;
+  background: rgba(194,160,112,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .impact-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .impact-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ==============================
+   FAREWELL — Colophon / Closing Page
+   ============================== */
+#farewell {
+  background: var(--parchment-200);
+  padding: var(--sp-16) 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.farewell-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/images/week4.png');
+  background-size: cover;
+  background-position: center 40%;
+  filter: sepia(40%) brightness(0.25) contrast(0.9);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+#farewell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 20%, var(--parchment-200) 75%);
+  z-index: 1;
+}
+
+/* Decorative border frame */
+#farewell::after {
+  content: '';
+  position: absolute;
+  inset: var(--sp-6);
+  border: 1px solid var(--parchment-800);
+  pointer-events: none;
+  z-index: 2;
+  border-radius: var(--radius-sm);
+}
+
+.farewell-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--sp-10) var(--sp-8);
+}
+
+.farewell-chapter-num {
+  font-family: var(--font-light);
+  font-size: var(--fs-2xl);
+  font-style: italic;
+  color: var(--crimson);
+  opacity: 0.35;
+  line-height: 1;
+  margin-bottom: var(--sp-5);
+}
+
+.farewell-deco-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 0 auto var(--sp-6);
+}
+
+.farewell-quote {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-style: italic;
+  color: var(--ink-700);
+  line-height: 1.65;
+  margin-bottom: var(--sp-8);
+  position: relative;
+}
+
+.farewell-quote::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.4em;
+  left: -0.3em;
+  font-size: 4rem;
+  color: var(--gold);
+  opacity: 0.25;
+  font-family: var(--font-display);
+  line-height: 1;
+}
+
+.farewell-footer {
+  font-family: var(--font-caps);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: var(--ink-400);
+  text-transform: uppercase;
+  margin-top: var(--sp-8);
+  line-height: 2;
+}
+
+.farewell-colophon {
+  font-family: var(--font-light);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  color: var(--ink-400);
+  opacity: 0.6;
+  margin-top: var(--sp-4);
+}

@@ -1,0 +1,14 @@
+{
+  "name": "kkn-journey",
+  "version": "1.0.0",
+  "description": "KKN Journey — Dokumentasi sinematik perjalanan KKN satu bulan",
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.0"
+  }
+}

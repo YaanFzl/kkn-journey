@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KKN Journey — Dokumentasi sinematik perjalanan Kuliah Kerja Nyata selama satu bulan. Momen, cerita, dan dampak nyata di desa." />
+  <meta property="og:title" content="KKN Journey — Satu Bulan Penuh Cerita" />
+  <meta property="og:description" content="Dokumentasi visual perjalanan KKN yang anti-mainstream. Dari arrival hingga farewell." />
+  <meta property="og:type" content="website" />
+  <title>KKN Journey — Satu Bulan Penuh Cerita</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+</head>
+<body>
+
+  <!-- ===================== LOADING SCREEN ===================== -->
+  <div id="loading-screen" aria-hidden="true">
+    <div class="loading-text float-anim">KKN Journey</div>
+    <div style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--text-muted);letter-spacing:0.3em;margin-top:4px;">
+      MEMUAT KENANGAN...
+    </div>
+    <div class="loading-bar-wrap" style="margin-top:24px;">
+      <div class="loading-bar"></div>
+    </div>
+  </div>
+
+  <!-- ===================== CUSTOM CURSOR ===================== -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ===================== SCROLL PROGRESS ===================== -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ===================== NAVBAR ===================== -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-icon">🌿</div>
+      KKN Journey
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about"    class="nav-link" data-section="about">Tentang</a></li>
+      <li><a href="#timeline" class="nav-link" data-section="timeline">Timeline</a></li>
+      <li><a href="#gallery"  class="nav-link" data-section="gallery">Galeri</a></li>
+      <li><a href="#impact"   class="nav-link" data-section="impact">Dampak</a></li>
+      <li><a href="#farewell" class="nav-link" data-section="farewell">Penutup</a></li>
+    </ul>
+    <button id="nav-toggle" aria-label="Toggle mobile navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ===================== MOBILE NAV ===================== -->
+  <div id="mobile-nav" aria-hidden="true">
+    <a href="#about"    class="mobile-nav-link">Tentang</a>
+    <a href="#timeline" class="mobile-nav-link">Timeline</a>
+    <a href="#gallery"  class="mobile-nav-link">Galeri</a>
+    <a href="#impact"   class="mobile-nav-link">Dampak</a>
+    <a href="#farewell" class="mobile-nav-link">Penutup</a>
+  </div>
+
+  <!-- ================================================================
+       HERO SECTION
+  ================================================================ -->
+  <section id="hero" aria-label="Hero — KKN Journey">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-side-grad-left" aria-hidden="true"></div>
+    <canvas id="canvas-particles" aria-hidden="true"></canvas>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">✦ Kuliah Kerja Nyata · 2025 ✦</p>
+
+      <h1 class="hero-title">
+        <span class="accent-green">Jelajah</span><br/>
+        <span class="accent-blue">Desa,</span><br/>
+        Jelajah Diri
+      </h1>
+
+      <p class="hero-subtitle">
+        <span id="typing-text">Satu Bulan. Satu Desa. Seribu Cerita.</span>
+      </p>
+
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Lokasi</span>
+          <span class="hero-meta-value">Desa Sukamaju</span>
+        </div>
+        <div class="hero-meta-sep" aria-hidden="true"></div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Durasi</span>
+          <span class="hero-meta-value">30 Hari</span>
+        </div>
+        <div class="hero-meta-sep" aria-hidden="true"></div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Anggota</span>
+          <span class="hero-meta-value">12 Mahasiswa</span>
+        </div>
+      </div>
+
+      <div class="hero-cta">
+        <a href="#timeline" class="btn btn-primary">
+          ⏱ Mulai Perjalanan
+        </a>
+        <a href="#gallery" class="btn btn-outline">
+          📷 Lihat Galeri
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span class="hero-scroll-hint-text">Scroll</span>
+      <div class="scroll-mouse">
+        <div class="scroll-mouse-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       ABOUT SECTION
+  ================================================================ -->
+  <section id="about" aria-label="Tentang KKN">
+    <div class="about-bg-circle about-bg-circle-1" aria-hidden="true"></div>
+    <div class="about-bg-circle about-bg-circle-2" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="about-grid">
+        <!-- Image -->
+        <div class="about-image-wrap reveal-left">
+          <img
+            src="assets/images/week1.png"
+            alt="Tim KKN tiba di desa"
+            class="about-image"
+            loading="lazy"
+          />
+          <div class="about-image-frame" aria-hidden="true">
+            <div class="about-image-corner corner-tl"></div>
+            <div class="about-image-corner corner-tr"></div>
+            <div class="about-image-corner corner-bl"></div>
+            <div class="about-image-corner corner-br"></div>
+          </div>
+          <!-- Stamp -->
+          <div class="stamp float-anim" style="position:absolute;bottom:24px;right:-20px;" aria-hidden="true">
+            <span style="font-size:1.2rem;">📍</span>
+            <span>KKN<br/>2025</span>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="about-content">
+          <div class="reveal delay-1">
+            <p class="section-label">Tentang Kami</p>
+            <h2 class="section-heading">
+              Bukan Sekadar<br/><em>Program Studi</em>
+            </h2>
+          </div>
+
+          <p class="reveal delay-2" style="color:var(--color-sand);margin-top:1.5rem;line-height:1.8;">
+            KKN bukan hanya kewajiban akademik — ini adalah transformasi. Selama 30 hari,
+            kami hidup bersama masyarakat Desa Sukamaju, belajar dari kearifan lokal,
+            dan mencoba memberikan dampak nyata melalui program yang lahir dari kebutuhan
+            warga sendiri.
+          </p>
+
+          <p class="reveal delay-3" style="color:var(--color-sand);margin-top:1rem;line-height:1.8;">
+            Dari mengajar anak-anak di pagi hari, hingga bekerja bersama petani di sawah
+            saat senja — setiap momen adalah cerita yang tak akan pernah terlupa.
+          </p>
+
+          <div class="about-stats reveal delay-4">
+            <div class="about-stat">
+              <div class="about-stat-num">
+                <span data-count="12" data-suffix="">0</span>
+                <span class="stat-accent">+</span>
+              </div>
+              <div class="about-stat-label">Anggota</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-num">
+                <span data-count="30" data-suffix="">0</span>
+                <span class="stat-accent"> hari</span>
+              </div>
+              <div class="about-stat-label">Durasi</div>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-num">
+                <span data-count="8" data-suffix="">0</span>
+                <span class="stat-accent">+</span>
+              </div>
+              <div class="about-stat-label">Program</div>
+            </div>
+          </div>
+
+          <div class="reveal delay-5" style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+            <span class="badge badge-blue"><span class="badge-dot"></span>Pendidikan</span>
+            <span class="badge badge-green"><span class="badge-dot"></span>Pertanian</span>
+            <span class="badge badge-brown"><span class="badge-dot"></span>Kesehatan</span>
+            <span class="badge badge-blue"><span class="badge-dot"></span>UMKM</span>
+            <span class="badge badge-green"><span class="badge-dot"></span>Lingkungan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       TIMELINE SECTION
+  ================================================================ -->
+  <section id="timeline" aria-label="Timeline Perjalanan KKN">
+    <div class="container">
+      <div class="timeline-header">
+        <p class="section-label reveal" style="justify-content:center;">Kronologi</p>
+        <h2 class="section-heading reveal delay-1" style="text-align:center;">
+          Empat Minggu,<br/><em>Empat Chapter</em>
+        </h2>
+        <p class="reveal delay-2" style="color:var(--color-sand);max-width:560px;margin:1rem auto 0;text-align:center;font-size:var(--fs-sm);">
+          Setiap minggu punya cerita, tantangan, dan pencapaiannya sendiri.
+          Inilah perjalanan kami — apa adanya.
+        </p>
+      </div>
+
+      <div class="weeks-container">
+        <!-- Week 1 -->
+        <div class="week-card glass-card reveal delay-1">
+          <div class="week-number">Day 01 – 07</div>
+          <div class="week-dot"></div>
+          <div class="week-img-wrap">
+            <img src="assets/images/week1.png" alt="Minggu pertama – tiba di desa" class="week-img" loading="lazy"/>
+            <div class="week-img-overlay"></div>
+            <div class="week-img-badge">
+              <span class="badge badge-blue">Week 01</span>
+            </div>
+          </div>
+          <h3 class="week-title">Arrival & Adaptasi</h3>
+          <p class="week-desc">
+            Tiba dengan koper penuh harapan. Berkenalan dengan warga, memetakan kebutuhan, dan mulai jatuh cinta dengan kesederhanaan desa.
+          </p>
+          <div class="week-tags">
+            <span class="week-tag">Survey</span>
+            <span class="week-tag">Perkenalan</span>
+            <span class="week-tag">Pemetaan</span>
+          </div>
+        </div>
+
+        <!-- Week 2 -->
+        <div class="week-card glass-card reveal delay-2">
+          <div class="week-number">Day 08 – 14</div>
+          <div class="week-dot"></div>
+          <div class="week-img-wrap">
+            <img src="assets/images/week2.png" alt="Minggu kedua – program berjalan" class="week-img" loading="lazy"/>
+            <div class="week-img-overlay"></div>
+            <div class="week-img-badge">
+              <span class="badge badge-green">Week 02</span>
+            </div>
+          </div>
+          <h3 class="week-title">Program Dimulai</h3>
+          <p class="week-desc">
+            Program mulai berjalan. Kelas literasi anak-anak, pelatihan UMKM ibu-ibu, dan workshop digital farming untuk petani muda.
+          </p>
+          <div class="week-tags">
+            <span class="week-tag">Pendidikan</span>
+            <span class="week-tag">UMKM</span>
+            <span class="week-tag">Pelatihan</span>
+          </div>
+        </div>
+
+        <!-- Week 3 -->
+        <div class="week-card glass-card reveal delay-3">
+          <div class="week-number">Day 15 – 21</div>
+          <div class="week-dot"></div>
+          <div class="week-img-wrap">
+            <img src="assets/images/week3.png" alt="Minggu ketiga – terjun ke sawah" class="week-img" loading="lazy"/>
+            <div class="week-img-overlay"></div>
+            <div class="week-img-badge">
+              <span class="badge badge-green">Week 03</span>
+            </div>
+          </div>
+          <h3 class="week-title">Deep Dive & Panen</h3>
+          <p class="week-desc">
+            Terjun langsung ke sawah bersama petani. Program-program mulai menunjukkan hasil. Semangat warga menular ke kami.
+          </p>
+          <div class="week-tags">
+            <span class="week-tag">Pertanian</span>
+            <span class="week-tag">Lingkungan</span>
+            <span class="week-tag">Komunitas</span>
+          </div>
+        </div>
+
+        <!-- Week 4 -->
+        <div class="week-card glass-card reveal delay-4">
+          <div class="week-number">Day 22 – 30</div>
+          <div class="week-dot"></div>
+          <div class="week-img-wrap">
+            <img src="assets/images/week4.png" alt="Minggu keempat – perpisahan" class="week-img" loading="lazy"/>
+            <div class="week-img-overlay"></div>
+            <div class="week-img-badge">
+              <span class="badge badge-brown">Week 04</span>
+            </div>
+          </div>
+          <h3 class="week-title">Final Chapter</h3>
+          <p class="week-desc">
+            Puncak acara, gelar karya, dan momen perpisahan yang menguras air mata. Desa ini kini sudah jadi rumah kedua.
+          </p>
+          <div class="week-tags">
+            <span class="week-tag">Gelar Karya</span>
+            <span class="week-tag">Perpisahan</span>
+            <span class="week-tag">Kenangan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       GALLERY SECTION
+  ================================================================ -->
+  <section id="gallery" aria-label="Galeri Foto KKN">
+    <div class="container">
+      <div class="gallery-header">
+        <div>
+          <p class="section-label reveal">Galeri</p>
+          <h2 class="section-heading reveal delay-1">
+            Momen yang<br/><em>Berbicara</em>
+          </h2>
+        </div>
+        <p class="reveal delay-2" style="color:var(--color-sand);font-size:var(--fs-sm);max-width:300px;text-align:right;">
+          Klik gambar untuk tampilan penuh. Setiap foto menyimpan seribu kata.
+        </p>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid reveal">
+        <div class="gallery-item" tabindex="0" role="button" aria-label="Buka foto 1">
+          <img src="assets/images/week1.png" alt="Kedatangan Tim KKN" class="gallery-img" loading="lazy"/>
+          <div class="gallery-overlay">
+            <p class="gallery-caption">📍 Kedatangan Tim KKN — Day 01</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" tabindex="0" role="button" aria-label="Buka foto 2">
+          <img src="assets/images/week2.png" alt="Program Pendidikan" class="gallery-img" loading="lazy"/>
+          <div class="gallery-overlay">
+            <p class="gallery-caption">📚 Kelas Literasi Anak — Day 09</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" tabindex="0" role="button" aria-label="Buka foto 3">
+          <img src="assets/images/week3.png" alt="Kerja di Sawah" class="gallery-img" loading="lazy"/>
+          <div class="gallery-overlay">
+            <p class="gallery-caption">🌾 Menanam Bersama Petani — Day 16</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" tabindex="0" role="button" aria-label="Buka foto 4">
+          <img src="assets/images/hero.png" alt="Pemandangan Desa" class="gallery-img" loading="lazy"/>
+          <div class="gallery-overlay">
+            <p class="gallery-caption">🌅 Senja di Desa Sukamaju</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" tabindex="0" role="button" aria-label="Buka foto 5">
+          <img src="assets/images/week4.png" alt="Malam Perpisahan" class="gallery-img" loading="lazy"/>
+          <div class="gallery-overlay">
+            <p class="gallery-caption">🪔 Malam Perpisahan — Day 30</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" tabindex="0" role="button" aria-label="Buka foto 6">
+          <img src="assets/images/week2.png" alt="Pelatihan UMKM" class="gallery-img" loading="lazy"/>
+          <div class="gallery-overlay">
+            <p class="gallery-caption">🛍️ Pelatihan UMKM Ibu-ibu — Day 11</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Lightbox galeri" style="opacity:0;">
+      <button id="lightbox-close" aria-label="Tutup lightbox">✕</button>
+      <img id="lightbox-img" src="" alt="Foto galeri" />
+      <p id="lightbox-caption" style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--color-sand);letter-spacing:0.1em;"></p>
+      <div class="lightbox-controls">
+        <button class="lightbox-btn" id="lightbox-prev" aria-label="Foto sebelumnya">‹</button>
+        <button class="lightbox-btn" id="lightbox-next" aria-label="Foto berikutnya">›</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       IMPACT SECTION
+  ================================================================ -->
+  <section id="impact" aria-label="Dampak KKN">
+    <div class="impact-bg-glow" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="impact-header">
+        <p class="section-label reveal" style="justify-content:center;">Dampak Nyata</p>
+        <h2 class="section-heading reveal delay-1" style="text-align:center;">
+          Angka yang<br/><em>Bercerita</em>
+        </h2>
+        <p class="reveal delay-2" style="color:var(--color-sand);max-width:500px;margin:1rem auto 0;text-align:center;font-size:var(--fs-sm);">
+          Di balik setiap kenangan, ada dampak yang terus berjalan bahkan setelah kami pergi.
+        </p>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="impact-grid">
+        <div class="impact-card glass-card reveal delay-1">
+          <span class="impact-icon">👨‍👩‍👧‍👦</span>
+          <div class="impact-num">
+            <span data-count="250" data-suffix="">0</span><span class="impact-num-suffix">+</span>
+          </div>
+          <div class="impact-label">Warga Terdampak</div>
+        </div>
+
+        <div class="impact-card glass-card reveal delay-2">
+          <span class="impact-icon">📚</span>
+          <div class="impact-num">
+            <span data-count="45" data-suffix="">0</span><span class="impact-num-suffix">+</span>
+          </div>
+          <div class="impact-label">Anak Belajar Membaca</div>
+        </div>
+
+        <div class="impact-card glass-card reveal delay-3">
+          <span class="impact-icon">🌾</span>
+          <div class="impact-num">
+            <span data-count="5" data-suffix="">0</span><span class="impact-num-suffix"> Ha</span>
+          </div>
+          <div class="impact-label">Lahan Dioptimasi</div>
+        </div>
+
+        <div class="impact-card glass-card reveal delay-4">
+          <span class="impact-icon">🛍️</span>
+          <div class="impact-num">
+            <span data-count="18" data-suffix="">0</span><span class="impact-num-suffix">+</span>
+          </div>
+          <div class="impact-label">UMKM Dilatih</div>
+        </div>
+      </div>
+
+      <!-- Progress bars -->
+      <div class="impact-bars">
+        <div class="impact-bar-row reveal delay-1">
+          <div class="impact-bar-header">
+            <span class="impact-bar-label">Program Pendidikan</span>
+            <span class="impact-bar-pct">92%</span>
+          </div>
+          <div class="impact-bar-track">
+            <div class="impact-bar-fill" data-width="92"></div>
+          </div>
+        </div>
+
+        <div class="impact-bar-row reveal delay-2">
+          <div class="impact-bar-header">
+            <span class="impact-bar-label">Pemberdayaan UMKM</span>
+            <span class="impact-bar-pct">78%</span>
+          </div>
+          <div class="impact-bar-track">
+            <div class="impact-bar-fill" data-width="78"></div>
+          </div>
+        </div>
+
+        <div class="impact-bar-row reveal delay-3">
+          <div class="impact-bar-header">
+            <span class="impact-bar-label">Pertanian Berkelanjutan</span>
+            <span class="impact-bar-pct">85%</span>
+          </div>
+          <div class="impact-bar-track">
+            <div class="impact-bar-fill" data-width="85"></div>
+          </div>
+        </div>
+
+        <div class="impact-bar-row reveal delay-4">
+          <div class="impact-bar-header">
+            <span class="impact-bar-label">Kesehatan Masyarakat</span>
+            <span class="impact-bar-pct">70%</span>
+          </div>
+          <div class="impact-bar-track">
+            <div class="impact-bar-fill" data-width="70"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       FAREWELL SECTION
+  ================================================================ -->
+  <section id="farewell" aria-label="Penutup">
+    <div class="farewell-bg" aria-hidden="true"></div>
+
+    <div class="farewell-content">
+      <p class="section-label reveal" style="justify-content:center;">Epilog</p>
+      <h2 class="section-heading reveal delay-1" style="text-align:center;margin-top:1rem;">
+        Sampai Jumpa,<br/><em>Desa Sukamaju</em>
+      </h2>
+
+      <div class="farewell-deco-line reveal delay-2"></div>
+
+      <blockquote class="farewell-quote reveal delay-3">
+        Pergi ke desa untuk mengabdi,<br/>
+        tapi justru kami yang paling banyak belajar.<br/>
+        Terima kasih telah menjadi rumah kami.
+      </blockquote>
+
+      <div style="margin-top:60px;" class="reveal delay-4">
+        <p style="font-family:var(--font-mono);font-size:var(--fs-xs);color:var(--text-muted);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;">
+          Tim KKN Kelompok 07
+        </p>
+        <div style="display:flex;justify-content:center;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge badge-blue">Universitas Indonesia</span>
+          <span class="badge badge-green">2025</span>
+          <span class="badge badge-brown">Desa Sukamaju</span>
+        </div>
+      </div>
+
+      <div class="farewell-deco-line reveal delay-5" style="margin-top:3rem;"></div>
+
+      <div class="farewell-footer reveal delay-6">
+        <p>Dibuat dengan 🌿 kenangan &amp; ❤️ hati</p>
+        <p style="margin-top:0.5rem;color:rgba(200,149,106,0.3);">KKN Journey © 2025 · All Rights Reserved</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script src="js/particles.js"></script>
+  <script src="js/scroll.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

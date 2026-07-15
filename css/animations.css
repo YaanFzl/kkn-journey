@@ -1,0 +1,262 @@
+/* ============================================================
+   KKN Journey — animations.css
+   Keyframes & Animation Utilities
+   ============================================================ */
+
+/* ——— Keyframes ——— */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(45,125,210,0.3), 0 0 40px rgba(45,125,210,0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(45,125,210,0.6), 0 0 80px rgba(45,125,210,0.25);
+  }
+}
+
+@keyframes glowPulseGreen {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(141,190,106,0.25), 0 0 40px rgba(141,190,106,0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(141,190,106,0.5), 0 0 80px rgba(141,190,106,0.2);
+  }
+}
+
+@keyframes floatDrift {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-12px) rotate(1.5deg); }
+  66%       { transform: translateY(-6px) rotate(-1deg); }
+}
+
+@keyframes scaleBreath {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.04); }
+}
+
+@keyframes rotateSlowCW {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes shimmerSlide {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes textReveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0% 0 0);
+    opacity: 1;
+  }
+}
+
+@keyframes lineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes lineGrowY {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes borderDraw {
+  0%   { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes particleDrift {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+  50%  { transform: translateY(-80px) translateX(20px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-160px) translateX(-10px) scale(0.8); opacity: 0; }
+}
+
+@keyframes navSlideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes cursorPing {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes stampReveal {
+  0%   { transform: scale(1.5) rotate(-8deg); opacity: 0; }
+  70%  { transform: scale(0.95) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes waveRipple {
+  from { transform: scale(1); opacity: 0.6; }
+  to   { transform: scale(3); opacity: 0; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes blinkCaret {
+  0%, 100% { border-right-color: var(--color-river); }
+  50%       { border-right-color: transparent; }
+}
+
+/* ——— Reveal Animations (triggered by .is-visible class) ——— */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s var(--ease-cinematic), transform 0.8s var(--ease-cinematic);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s var(--ease-cinematic), transform 0.8s var(--ease-cinematic);
+}
+
+.reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.8s var(--ease-cinematic), transform 0.8s var(--ease-cinematic);
+}
+
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.8s var(--ease-cinematic), transform 0.8s var(--ease-cinematic);
+}
+
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delays */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+.delay-6 { transition-delay: 0.6s; }
+.delay-7 { transition-delay: 0.7s; }
+.delay-8 { transition-delay: 0.8s; }
+
+/* ——— Float Animation Helper ——— */
+.float-anim {
+  animation: floatDrift 6s ease-in-out infinite;
+}
+
+.float-anim-2 {
+  animation: floatDrift 8s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.float-anim-3 {
+  animation: floatDrift 10s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+/* ——— Shimmer Text ——— */
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--color-cream) 0%,
+    var(--color-river) 30%,
+    var(--color-sprout) 50%,
+    var(--color-river) 70%,
+    var(--color-cream) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmerSlide 4s linear infinite;
+}
+
+/* ——— Glow Pulse ——— */
+.glow-blue {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.glow-green {
+  animation: glowPulseGreen 3s ease-in-out infinite;
+}
+
+/* ——— Breath Scale ——— */
+.breath {
+  animation: scaleBreath 4s ease-in-out infinite;
+}

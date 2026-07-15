@@ -1,0 +1,43 @@
+---
+// Layout.astro — KKN Journey Historical Book Edition
+import '../styles/global.css';
+import '../styles/animations.css';
+import '../styles/components.css';
+import '../styles/sections.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Jurnal KKN — Desa Angsana · Universitas Lambung Mangkurat',
+  description = 'Jurnal lapangan KKN Kelompok 2 Universitas Lambung Mangkurat di Desa Angsana, 13 Juli – 15 Agustus 2026. Dokumentasi perjalanan mengabdi di desa pesisir.',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content={description} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <!-- Tablet-friendly theme color — parchment -->
+  <meta name="theme-color" content="#F3EDD8" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>{title}</title>
+</head>
+<body>
+  <slot />
+
+  <script src="/js/particles.js" defer></script>
+  <script src="/js/scroll.js" defer></script>
+  <script src="/js/gallery.js" defer></script>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

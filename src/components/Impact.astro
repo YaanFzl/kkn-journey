@@ -1,0 +1,65 @@
+---
+// Impact.astro — Catatan Lapangan (Field Notes) Style
+const stats = [
+  { icon: '🌱', count: 1500, suffix: '+', label: 'Bibit Mangrove'      },
+  { icon: '🪸', count: 120,  suffix: '+', label: 'Transplantasi Karang' },
+  { icon: '🛶', count: 8,    suffix: '',  label: 'Kelompok Nelayan'     },
+  { icon: '🛍️', count: 25,   suffix: '+', label: 'UMKM Dilatih'         },
+];
+
+const bars = [
+  { label: 'Penanaman Mangrove & Konservasi Pesisir',       pct: 95 },
+  { label: 'Edukasi & Literasi Anak Nelayan',               pct: 88 },
+  { label: 'Transplantasi & Restorasi Terumbu Karang',      pct: 75 },
+  { label: 'Pendampingan UMKM & Ekowisata Pesisir',         pct: 82 },
+];
+---
+
+<section id="impact" aria-label="Dampak KKN">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="impact-header reveal">
+      <p class="chapter-eyebrow">
+        <span class="orn">❧</span>
+        Bab IV — Catatan Lapangan
+      </p>
+      <h2 class="section-heading" style="color:var(--parchment-400);">
+        Angka yang<br>
+        <em style="color:var(--gold-300);">Bercerita</em>
+      </h2>
+      <p style="color:var(--parchment-800); max-width:480px; margin:var(--sp-4) auto 0; font-size:var(--fs-sm); font-style:italic;">
+        Di balik setiap kenangan, ada dampak yang terus berjalan bahkan setelah kami pergi dari Desa Angsana.
+      </p>
+    </div>
+
+    <!-- Stats grid -->
+    <div class="impact-grid">
+      {stats.map((s, i) => (
+        <div class={`impact-card reveal delay-${i + 1}`}>
+          <span class="impact-icon">{s.icon}</span>
+          <div class="impact-num">
+            <span data-count={s.count} data-suffix={s.suffix}>0</span>
+          </div>
+          <div class="impact-label">{s.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Progress bars -->
+    <div class="impact-bars">
+      {bars.map((b, i) => (
+        <div class={`impact-bar-row reveal delay-${i + 1}`}>
+          <div class="impact-bar-header">
+            <span class="impact-bar-label">{b.label}</span>
+            <span class="impact-bar-pct">{b.pct}%</span>
+          </div>
+          <div class="impact-bar-track">
+            <div class="impact-bar-fill" data-width={b.pct}></div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

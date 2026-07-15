@@ -1,0 +1,74 @@
+---
+// Hero.astro — Book Cover / Opening Page
+---
+
+<section id="hero" aria-label="Sampul Jurnal KKN">
+  <!-- Background image with sepia overlay -->
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <!-- Book spine decoration -->
+  <div class="hero-spine" aria-hidden="true"></div>
+
+  <!-- Left margin rule -->
+  <div class="hero-margin-rule" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <!-- Chapter header -->
+    <div class="hero-chapter-header reveal">
+      <div class="hero-chapter-rule"></div>
+      <span class="hero-eyebrow">Jurnal Lapangan · KKN 2026</span>
+      <div class="hero-chapter-rule" style="background: linear-gradient(to left, rgba(194,160,112,0.4), transparent);"></div>
+    </div>
+
+    <!-- Main title — book cover style -->
+    <h1 class="hero-title reveal delay-1">
+      <span class="book-accent">Desa Angsana</span>
+      Mengabdi,<br>
+      <em style="color: var(--gold-300); font-style: italic;">Menginspirasi</em>
+    </h1>
+
+    <!-- Italic subtitle -->
+    <p class="hero-subtitle reveal delay-2">
+      <span id="typing-text">Satu Bulan. Satu Desa. Seribu Cerita.</span>
+    </p>
+
+    <!-- Date badge -->
+    <div class="hero-date-badge reveal delay-3">
+      <span class="hero-date-badge-text">13 Juli</span>
+      <span class="hero-date-sep">—</span>
+      <span class="hero-date-badge-text">15 Agustus 2026</span>
+    </div>
+
+    <!-- Meta info -->
+    <div class="hero-meta reveal delay-4">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Lokasi</span>
+        <span class="hero-meta-value">Desa Angsana</span>
+      </div>
+      <div class="hero-meta-sep" aria-hidden="true"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Kelompok</span>
+        <span class="hero-meta-value">KKN Kel. 02</span>
+      </div>
+      <div class="hero-meta-sep" aria-hidden="true"></div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Universitas</span>
+        <span class="hero-meta-value">Lambung Mangkurat</span>
+      </div>
+    </div>
+
+    <!-- CTA buttons -->
+    <div class="hero-cta reveal delay-5">
+      <a href="#timeline" class="btn btn-primary">📖 Buka Jurnal</a>
+      <a href="#gallery"  class="btn btn-outline">🎞 Lihat Galeri</a>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <span class="hero-scroll-hint-text">Gulir</span>
+    <div class="scroll-mouse">
+      <div class="scroll-mouse-dot"></div>
+    </div>
+  </div>
+</section>

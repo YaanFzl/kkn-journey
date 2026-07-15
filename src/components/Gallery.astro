@@ -1,0 +1,154 @@
+---
+// Gallery.astro — Vintage Photo Exhibition with Book-Peek Lightbox
+const photos = [
+  {
+    src:         '/assets/images/week1.png',
+    alt:         'Kedatangan Tim KKN Kelompok 2',
+    title:       'Langkah Pertama Mengabdi',
+    day:         '13 Juli 2026',
+    category:    'Kedatangan',
+    location:    'Kantor Desa Angsana',
+    description: 'Hari pertama KKN dimulai dengan penuh harap saat kami tiba di Desa Angsana. Disambut hangat aparat desa dan tokoh masyarakat, kami langsung memetakan wilayah pesisir dan mendiskusikan program kerja sebulan ke depan bersama kelompok nelayan setempat.',
+    caption:     '📍 Langkah Pertama — 13 Juli 2026',
+  },
+  {
+    src:         '/assets/images/week2.png',
+    alt:         'Kelas literasi anak-anak nelayan',
+    title:       'Pilar Masa Depan Pesisir',
+    day:         '21 Juli 2026',
+    category:    'Edukasi',
+    location:    'Posko KKN & Pantai Angsana',
+    description: 'Anak-anak nelayan berkumpul penuh antusias mengikuti kelas literasi pesisir dan bimbingan belajar. Di bawah rindangnya pepohonan dekat pantai, kami belajar bersama tentang sains dasar, membaca, dan kepedulian terhadap laut dan lingkungan.',
+    caption:     '📚 Kelas Literasi — 21 Juli 2026',
+  },
+  {
+    src:         '/assets/images/week3.png',
+    alt:         'Transplantasi karang di perairan Angsana',
+    title:       'Menanam Harapan di Dasar Laut',
+    day:         '2 Agustus 2026',
+    category:    'Konservasi',
+    location:    'Perairan Pantai Angsana',
+    description: 'Bekerja sama dengan kelompok sadar wisata nelayan lokal, kami turun ke laut melakukan transplantasi karang menggunakan media meja besi. Program ini bertujuan memulihkan terumbu karang yang rusak dan menjaga keanekaragaman hayati bawah laut Kalimantan Selatan.',
+    caption:     '🪸 Transplantasi Karang — 2 Agustus',
+  },
+  {
+    src:         '/assets/images/hero.png',
+    alt:         'Keindahan pesisir Pantai Angsana',
+    title:       'Ketenangan Pantai Angsana',
+    day:         '25 Juli 2026',
+    category:    'Refleksi',
+    location:    'Pantai Angsana',
+    description: 'Menikmati senja keemasan setelah seharian mengabdi di desa. Pantai Angsana dengan ombaknya yang tenang menjadi pengingat berharga akan kedamaian dan kehangatan yang diberikan alam pesisir serta ketulusan hati masyarakat nelayan desa ini.',
+    caption:     '🌅 Senja Angsana — 25 Juli 2026',
+  },
+  {
+    src:         '/assets/images/week4.png',
+    alt:         'Malam perpisahan bersama warga desa',
+    title:       'Ikatan yang Abadi',
+    day:         '14 Agustus 2026',
+    category:    'Seremoni',
+    location:    'Balai Desa Angsana',
+    description: 'Malam keakraban penuh haru bersama seluruh masyarakat Desa Angsana. Kami menyajikan pentas seni kecil sebagai tanda pamit dan terima kasih atas kehangatan yang menjadikan desa nelayan ini seperti rumah kedua bagi setiap anggota kelompok kami.',
+    caption:     '❤️ Malam Perpisahan — 14 Agustus',
+  },
+  {
+    src:         '/assets/images/week2.png',
+    alt:         'Pelatihan UMKM produk olahan ikan',
+    title:       'Mandiri Ekonomi Pesisir',
+    day:         '28 Juli 2026',
+    category:    'UMKM',
+    location:    'Balai Pertemuan Nelayan',
+    description: 'Pelatihan pembuatan kerupuk dan abon ikan bersama ibu-ibu PKK Desa Angsana. Kami membantu mendesain kemasan baru yang lebih menarik serta mengajarkan dasar-dasar pemasaran digital agar produk lokal hasil laut bisa menjangkau pasar yang lebih luas.',
+    caption:     '🐟 UMKM Pesisir — 28 Juli 2026',
+  },
+];
+---
+
+<section id="gallery" aria-label="Galeri Foto KKN">
+  <div class="container">
+
+    <!-- Section header -->
+    <div class="gallery-header reveal">
+      <div>
+        <p class="chapter-eyebrow">
+          <span class="orn">❧</span>
+          Bab III — Foto Lapangan
+        </p>
+        <h2 class="section-heading">
+          Momen yang<br>
+          <em>Berbicara</em>
+        </h2>
+      </div>
+      <p style="color:var(--ink-500);font-size:var(--fs-sm);max-width:240px;text-align:right;font-style:italic;">
+        Klik gambar untuk membuka catatan momen selengkapnya.
+      </p>
+    </div>
+
+    <!-- Photo grid — vintage frames -->
+    <div class="gallery-grid reveal">
+      {photos.map((photo, i) => (
+        <div
+          class="gallery-item"
+          tabindex="0"
+          role="button"
+          aria-label={`Buka foto ${i + 1}: ${photo.title}`}
+          data-title={photo.title}
+          data-day={photo.day}
+          data-category={photo.category}
+          data-location={photo.location}
+          data-description={photo.description}
+        >
+          <img
+            src={photo.src}
+            alt={photo.alt}
+            class="gallery-img"
+            loading="lazy"
+          />
+          <div class="gallery-overlay">
+            <p class="gallery-caption">{photo.caption}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+
+  <!-- ——— Lightbox (Book Journal Detail + Side Peek) ——— -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Detail foto galeri">
+    <button id="lightbox-close" aria-label="Tutup lightbox">✕</button>
+
+    <!-- Prev page peek -->
+    <div id="lightbox-prev-peek" class="lightbox-peek lightbox-peek-prev" role="button" tabindex="0" aria-label="Foto sebelumnya">
+      <img id="lightbox-prev-peek-img" src="" alt="Foto sebelumnya" />
+      <div class="lightbox-peek-shade"></div>
+      <span class="lightbox-peek-arrow">‹</span>
+    </div>
+
+    <!-- Main journal container -->
+    <div class="lightbox-container">
+      <!-- Photo pane -->
+      <div class="lightbox-image-pane">
+        <img id="lightbox-img" src="" alt="Foto galeri" />
+      </div>
+
+      <!-- Journal info pane -->
+      <div class="lightbox-info-pane">
+        <div class="lightbox-meta">
+          <span id="lightbox-day" class="badge badge-crimson">13 Juli</span>
+          <span id="lightbox-category" class="badge badge-gold">Kategori</span>
+        </div>
+        <h3 id="lightbox-title">Judul Momen</h3>
+        <p id="lightbox-location" class="lightbox-location">📍 Lokasi</p>
+        <p id="lightbox-description" class="lightbox-desc">Deskripsi momen...</p>
+        <p id="lightbox-counter" class="lightbox-counter">1 / 6</p>
+      </div>
+    </div>
+
+    <!-- Next page peek -->
+    <div id="lightbox-next-peek" class="lightbox-peek lightbox-peek-next" role="button" tabindex="0" aria-label="Foto berikutnya">
+      <img id="lightbox-next-peek-img" src="" alt="Foto berikutnya" />
+      <div class="lightbox-peek-shade"></div>
+      <span class="lightbox-peek-arrow">›</span>
+    </div>
+  </div>
+</section>

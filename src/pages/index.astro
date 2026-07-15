@@ -1,0 +1,37 @@
+---
+// index.astro — Main page assembling all components
+import Layout from '../layouts/Layout.astro';
+import LoadingScreen from '../components/LoadingScreen.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Timeline from '../components/Timeline.astro';
+import Gallery from '../components/Gallery.astro';
+import Impact from '../components/Impact.astro';
+import Farewell from '../components/Farewell.astro';
+---
+
+<Layout>
+  <!-- Custom Cursor -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Scroll Progress -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Loading Screen -->
+  <LoadingScreen />
+
+  <!-- Navigation -->
+  <Navbar />
+
+  <!-- Page Sections -->
+  <main>
+    <Hero />
+    <About />
+    <Timeline />
+    <Gallery />
+    <Impact />
+    <Farewell />
+  </main>
+</Layout>

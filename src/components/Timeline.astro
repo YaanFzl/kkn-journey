@@ -1,0 +1,106 @@
+---
+// Timeline.astro — Roman Numeral Chapter Cards
+const weeks = [
+  {
+    roman:  'I',
+    range:  '13 — 19 Juli',
+    badge:  { label: 'Week 01', type: 'badge-crimson' },
+    image:  '/assets/images/week1.png',
+    imageAlt: 'Minggu pertama – tiba di Desa Angsana',
+    title:  'Kedatangan & Orientasi',
+    desc:   'Tiba di Desa Angsana, disambut aparat desa dan tokoh masyarakat nelayan. Melakukan pemetaan wilayah pesisir dan koordinasi awal program kerja bersama kelompok tani dan nelayan setempat.',
+    tags:   ['Pesisir', 'Orientasi', 'Adaptasi'],
+  },
+  {
+    roman:  'II',
+    range:  '20 — 28 Juli',
+    badge:  { label: 'Week 02', type: 'badge-gold' },
+    image:  '/assets/images/week2.png',
+    imageAlt: 'Minggu kedua – pembibitan mangrove',
+    title:  'Edukasi & Konservasi',
+    desc:   'Memulai bimbingan belajar anak-anak pesisir dan kelas alam. Persiapan pembibitan 1.500 bibit mangrove bersama Pokdarwis untuk memulihkan ekosistem hutan bakau yang rusak.',
+    tags:   ['Mangrove', 'Edukasi', 'Konservasi'],
+  },
+  {
+    roman:  'III',
+    range:  '29 Jul — 7 Agust',
+    badge:  { label: 'Week 03', type: 'badge-sepia' },
+    image:  '/assets/images/week3.png',
+    imageAlt: 'Minggu ketiga – transplantasi karang',
+    title:  'Transplantasi Karang',
+    desc:   'Terjun langsung ke perairan Pantai Angsana bersama nelayan lokal untuk melakukan transplantasi karang menggunakan media meja besi. Upaya memulihkan terumbu karang yang kian terancam.',
+    tags:   ['Terumbu Karang', 'Laut', 'Nelayan'],
+  },
+  {
+    roman:  'IV',
+    range:  '8 — 15 Agustus',
+    badge:  { label: 'Week 04', type: 'badge-ink' },
+    image:  '/assets/images/week4.png',
+    imageAlt: 'Minggu keempat – gelar karya dan pamitan',
+    title:  'Gelar Karya & Pamitan',
+    desc:   'Pameran produk olahan ikan khas pesisir, penyerahan laporan program kerja, dan malam perpisahan penuh haru bersama masyarakat nelayan Desa Angsana yang telah menjadi keluarga.',
+    tags:   ['Gelar Karya', 'UMKM', 'Perpisahan'],
+  },
+];
+---
+
+<section id="timeline" aria-label="Timeline Perjalanan KKN">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="timeline-header reveal">
+      <p class="chapter-eyebrow" style="justify-content:center;">
+        <span class="orn">❧</span>
+        Bab II — Kronik Perjalanan
+      </p>
+      <h2 class="section-heading" style="text-align:center;">
+        Empat Minggu,<br>
+        <em>Empat Bab Cerita</em>
+      </h2>
+      <p style="color:var(--ink-500); max-width:520px; margin:var(--sp-4) auto 0; text-align:center; font-size:var(--fs-sm); font-style:italic;">
+        Setiap minggu menyimpan ceritanya sendiri — tantangan, keberhasilan,
+        dan kenangan yang tak terhapus waktu.
+      </p>
+    </div>
+
+    <!-- Four chapter cards -->
+    <div class="weeks-container">
+      {weeks.map((w, i) => (
+        <div class={`week-card glass-card reveal delay-${i + 1}`}>
+          <!-- Chapter strip header -->
+          <div class="week-header-strip">
+            <span class="week-roman">{w.roman}</span>
+            <span class="week-number">{w.range}</span>
+          </div>
+
+          <!-- Photo -->
+          <div class="week-img-wrap">
+            <img
+              src={w.image}
+              alt={w.imageAlt}
+              class="week-img"
+              loading="lazy"
+            />
+            <div class="week-img-overlay"></div>
+            <div class="week-img-badge">
+              <span class={`badge ${w.badge.type}`}>{w.badge.label}</span>
+            </div>
+          </div>
+
+          <!-- Text -->
+          <div class="week-content">
+            <h3 class="week-title">{w.title}</h3>
+            <p class="week-desc">{w.desc}</p>
+            <div class="week-tags">
+              {w.tags.map(tag => (
+                <span class="week-tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="ornament-rule reveal">❧</div>
+  </div>
+</section>

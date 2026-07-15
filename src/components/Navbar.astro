@@ -1,0 +1,44 @@
+---
+// Navbar.astro — Table of Contents Style
+const navLinks = [
+  { href: '#about',    label: 'Tentang',  roman: 'I'   },
+  { href: '#timeline', label: 'Timeline', roman: 'II'  },
+  { href: '#gallery',  label: 'Galeri',   roman: 'III' },
+  { href: '#impact',   label: 'Dampak',   roman: 'IV'  },
+  { href: '#farewell', label: 'Penutup',  roman: 'V'   },
+];
+---
+
+<nav id="navbar" role="navigation" aria-label="Navigasi utama">
+  <!-- Logo / Book Title -->
+  <a href="#hero" class="nav-logo">
+    <span class="nav-logo-fleuron">❧</span>
+    <span>Jurnal KKN</span>
+  </a>
+
+  <!-- Desktop: Chapter Links -->
+  <ul class="nav-links">
+    {navLinks.map(link => (
+      <li>
+        <a href={link.href} class="nav-link" data-section={link.href.slice(1)}>
+          <span class="chapter-num">{link.roman}</span>
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <!-- Mobile: Hamburger -->
+  <button id="nav-toggle" aria-label="Buka menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Mobile Overlay -->
+<div id="mobile-nav" aria-hidden="true">
+  {navLinks.map(link => (
+    <a href={link.href} class="mobile-nav-link">{link.roman}. {link.label}</a>
+  ))}
+</div>

@@ -1,0 +1,105 @@
+---
+// About.astro — Two-Column Journal Layout
+const stats = [
+  { num: 12, suffix: '',      label: 'Anggota Tim' },
+  { num: 34, suffix: ' hari', label: 'Durasi KKN'  },
+  { num: 8,  suffix: '+',     label: 'Program Kerja'},
+];
+
+const badges = [
+  { label: 'Konservasi Pesisir', type: 'badge-crimson' },
+  { label: 'Edukasi Anak',       type: 'badge-gold'    },
+  { label: 'UMKM Nelayan',       type: 'badge-sepia'   },
+  { label: 'Transplantasi Karang', type: 'badge-ink'   },
+  { label: 'Penanaman Mangrove', type: 'badge-crimson' },
+];
+---
+
+<section id="about" aria-label="Tentang KKN">
+  <div class="container">
+
+    <!-- Ornamental top rule -->
+    <div class="ornament-rule reveal">❧</div>
+
+    <div class="about-grid">
+
+      <!-- Left: Vintage photo frame -->
+      <div class="about-image-wrap reveal-left reveal">
+        <div class="about-image-container">
+          <span class="corner-orn tl"></span>
+          <span class="corner-orn tr"></span>
+          <span class="corner-orn bl"></span>
+          <span class="corner-orn br"></span>
+          <img
+            src="/assets/images/week1.png"
+            alt="Tim KKN Kelompok 2 ULM tiba di Desa Angsana"
+            class="about-image"
+            loading="lazy"
+          />
+        </div>
+        <p class="about-photo-caption">Tim KKN Kelompok 2 — Desa Angsana, Juli 2026</p>
+
+        <!-- Wax seal stamp -->
+        <div class="about-wax-stamp stamp-anim" aria-hidden="true">
+          <div class="wax-seal">
+            KKN<br>2026
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Journal text content -->
+      <div class="about-content">
+        <div class="reveal">
+          <p class="chapter-eyebrow">
+            <span class="orn">❧</span>
+            Bab I — Tentang Kami
+          </p>
+          <h2 class="section-heading">
+            Bukan Sekadar<br>
+            <em>Program Kuliah</em>
+          </h2>
+        </div>
+
+        <p class="about-text drop-cap reveal delay-2">
+          KKN bukan hanya kewajiban akademik — ini adalah transformasi.
+          Selama 34 hari, kami dari Universitas Lambung Mangkurat hidup bersama
+          masyarakat Desa Angsana, belajar dari kearifan lokal pesisir, dan
+          mencoba memberikan dampak nyata lewat program konservasi serta
+          pemberdayaan masyarakat nelayan.
+        </p>
+
+        <!-- Pull quote -->
+        <div class="about-quote-block reveal delay-3">
+          <p>
+            "Terinspirasi oleh filosofi Pohon Angsana — kokoh membumi,
+            meneduhkan, menebar kebaikan — kami hadir untuk belajar dan
+            berbagi bersama."
+          </p>
+        </div>
+
+        <!-- Stats as field data -->
+        <div class="about-stats reveal delay-4">
+          {stats.map(s => (
+            <div class="about-stat">
+              <div class="about-stat-num">
+                <span data-count={s.num} data-suffix={s.suffix}>0</span>
+              </div>
+              <div class="about-stat-label">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Badges -->
+        <div class="about-badge-row reveal delay-5">
+          {badges.map(b => (
+            <span class={`badge ${b.type}`}>{b.label}</span>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom ornamental rule -->
+    <div class="ornament-rule reveal">❧</div>
+  </div>
+</section>

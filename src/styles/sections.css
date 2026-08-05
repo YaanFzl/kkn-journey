@@ -541,7 +541,7 @@
 }
 
 .team-card {
-  flex: 0 0 210px;
+  flex: 0 0 220px;
   scroll-snap-align: start;
   background: var(--parchment-200);
   border: 1px solid rgba(168, 116, 32, 0.25);
@@ -562,7 +562,7 @@
 .team-card-image-wrap {
   position: relative;
   width: 100%;
-  height: 210px;
+  height: 250px;
   overflow: hidden;
   background: #0a0604;
 }
@@ -571,8 +571,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   display: block;
-  filter: sepia(15%) contrast(1.04);
+  filter: sepia(10%) contrast(1.04);
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
@@ -607,8 +608,8 @@
   font-size: var(--fs-sm);
   font-style: italic;
   color: var(--ink-800);
-  margin-bottom: 2px;
-  line-height: 1.3;
+  margin-bottom: 3px;
+  line-height: 1.35;
 }
 
 .team-card-role {
@@ -617,14 +618,6 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--crimson);
-  margin-bottom: 2px;
-}
-
-.team-card-prodi {
-  font-family: var(--font-light);
-  font-size: var(--fs-xs);
-  font-style: italic;
-  color: var(--ink-400);
 }
 
 @media (max-width: 860px) {

@@ -74,6 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
     new window.FloatingGallery();
   }
 
+  /* ——— Impact Carousel ——— */
+  if (window.ImpactCarousel) {
+    new window.ImpactCarousel();
+  }
+
   /* ——— Navigation ——— */
   const navToggle = document.getElementById('nav-toggle');
   const mobileNav = document.getElementById('mobile-nav');

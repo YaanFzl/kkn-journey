@@ -1,50 +1,65 @@
 ---
-// Impact.astro — Bab IV: Catatan & Jejak Pengabdian (Output Realistis Program Kerja)
+// Impact.astro — Bab IV: Swipeable Card Carousel
 const prokerOutputs = [
   {
     icon: '♻️',
+    num: '01',
     badge: 'Lingkungan & TPS3R',
     badgeType: 'badge-crimson',
     title: 'Pengelolaan Sampah & Edukasi TPS3R',
-    location: 'PT. BIB, SDN & SMAN 1 Angsana, TPS3R Desa',
+    location: 'PT. BIB · SDN & SMAN 1 Angsana · TPS3R Desa',
     desc: 'Melakukan aksi pemilahan sampah tukar sembako kolaborasi PT. BIB, edukasi pemilahan sampah organik/anorganik di SDN & SMAN 1 Angsana, serta pendataan awal di TPS3R Desa Angsana.',
     tag: 'Edukasi & Aksinergi',
+    accent: '#7d1d0e',   // crimson
+    accentLight: 'rgba(125,29,14,0.12)',
   },
   {
     icon: '🧪',
+    num: '02',
     badge: 'Inovasi Organik',
     badgeType: 'badge-gold',
     title: 'Formulasi Ecoenzym & Pupuk Organik Cair',
-    location: 'MTs Syarif Ali & Posko KKN Desa Angsana',
+    location: 'MTs Syarif Ali · Posko KKN Desa Angsana',
     desc: 'Sosialisasi keberlanjutan Ecoenzym di MTs Syarif Ali, persiapan bahan organik, serta demonstrasi dan sosialisasi pembuatan Pupuk Organik Cair (POC) bersama warga desa.',
     tag: 'Inovasi & Lingkungan',
+    accent: '#a87420',
+    accentLight: 'rgba(168,116,32,0.12)',
   },
   {
     icon: '🌿',
+    num: '03',
     badge: 'Konservasi Mangrove',
     badgeType: 'badge-sepia',
     title: 'Pemanfaatan Buah Mangrove & Ekowisata',
-    location: 'Kawasan Mangrove Angsana & Hijau Lestari',
+    location: 'Kawasan Mangrove Angsana · Hijau Lestari',
     desc: 'Survei kawasan mangrove bersama Pak Nuh (Hijau Lestari), eksplorasi potensi ekowisata, dan sosialisasi pemanfaatan buah mangrove (Rhizophora mucronata) untuk olahan Kopi Mangrove.',
     tag: 'Ekowisata Pesisir',
+    accent: '#4a6b3a',
+    accentLight: 'rgba(74,107,58,0.12)',
   },
   {
     icon: '🥟',
+    num: '04',
     badge: 'Ketahanan Pangan & UMKM',
     badgeType: 'badge-ink',
     title: 'Dimsum Ikan Lajang & Digitalisasi UMKM',
     location: 'Masyarakat & Pelaku UMKM Desa Angsana',
     desc: 'Sosialisasi Gerakan Gemar Makan Ikan melalui inovasi pembuatan Dimsum dari ikan Lajang serta pendampingan materi pemasaran digital untuk pengembangan UMKM lokal.',
     tag: 'Gemar Ikan & UMKM',
+    accent: '#2a4a6b',
+    accentLight: 'rgba(42,74,107,0.12)',
   },
   {
     icon: '🤝',
+    num: '05',
     badge: 'Aksi Kemasyarakatan',
     badgeType: 'badge-crimson',
     title: 'Gotong Royong & Infrastruktur Pesisir',
-    location: 'Koperasi Merah Putih, Kantor Desa, & Pantai',
+    location: 'Koperasi Merah Putih · Kantor Desa · Pantai',
     desc: 'Gotong royong di Koperasi Merah Putih, perbaikan jalan ke Pantai Angsana, Jumat Bersih kantor desa, serta pemasangan bendera merah putih persiapan HUT RI ke-81.',
     tag: 'Sosialisasi & Bakti',
+    accent: '#6b3a2a',
+    accentLight: 'rgba(107,58,42,0.12)',
   },
 ];
 
@@ -70,31 +85,80 @@ const deliverables = [
         <em style="color:var(--gold-300);">Nyata Lapangan</em>
       </h2>
       <p style="color:var(--parchment-800); max-width:520px; margin:var(--sp-4) auto 0; font-size:var(--fs-sm); font-style:italic;">
-        Bukan sekadar deretan angka, melainkan karya nyata, inovasi lingkungan, dan hubungan hangat yang kami tinggalkan untuk Desa Angsana.
+        Bukan sekadar deretan angka — karya nyata, inovasi lingkungan, dan hubungan hangat
+        yang kami tinggalkan untuk Desa Angsana.
       </p>
     </div>
 
-    <!-- 5 Pilar Output Program Kerja Grid -->
-    <div class="proker-output-grid">
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       DRAG CAROUSEL
+  ═══════════════════════════════════════ -->
+  <div class="impact-carousel-wrap reveal" id="impact-carousel-wrap">
+
+    <!-- Drag hint -->
+    <div class="carousel-drag-hint" id="carousel-drag-hint" aria-hidden="true">
+      <svg width="40" height="20" viewBox="0 0 40 20" fill="none">
+        <path d="M2 10 L14 4 M2 10 L14 16 M38 10 L26 4 M38 10 L26 16" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="4" y1="10" x2="36" y2="10" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
+      </svg>
+      <span>Geser</span>
+    </div>
+
+    <!-- Track -->
+    <div class="impact-carousel-track" id="impact-carousel-track">
       {prokerOutputs.map((p, i) => (
-        <div class={`proker-output-card reveal delay-${(i % 3) + 1}`}>
-          <div class="proker-output-header">
-            <span class="proker-output-icon">{p.icon}</span>
+        <div
+          class="impact-card"
+          data-index={String(i)}
+          style={`--card-accent:${p.accent}; --card-accent-light:${p.accentLight}; --card-delay:${i * 0.08}s;`}
+        >
+          <!-- Large background number -->
+          <div class="impact-card-bg-num" aria-hidden="true">{p.num}</div>
+
+          <!-- Top strip -->
+          <div class="impact-card-strip">
+            <span class="impact-card-num-label">{p.num} / 05</span>
             <span class={`badge ${p.badgeType}`}>{p.badge}</span>
           </div>
-          <h3 class="proker-output-title">{p.title}</h3>
-          <p class="proker-output-location">📍 {p.location}</p>
-          <p class="proker-output-desc">{p.desc}</p>
-          <div class="proker-output-footer">
-            <span class="proker-output-tag"># {p.tag}</span>
+
+          <!-- Icon -->
+          <div class="impact-card-icon">{p.icon}</div>
+
+          <!-- Content -->
+          <h3 class="impact-card-title">{p.title}</h3>
+          <p class="impact-card-loc">📍 {p.location}</p>
+          <p class="impact-card-desc">{p.desc}</p>
+
+          <!-- Footer tag -->
+          <div class="impact-card-tag">
+            <span># {p.tag}</span>
           </div>
         </div>
       ))}
     </div>
 
+    <!-- Progress dots -->
+    <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Pilih kartu">
+      {prokerOutputs.map((_, i) => (
+        <button
+          class={`carousel-dot${i === 0 ? ' active' : ''}`}
+          data-dot-index={String(i)}
+          role="tab"
+          aria-selected={i === 0 ? 'true' : 'false'}
+          aria-label={`Kartu ${i + 1}`}
+        ></button>
+      ))}
+    </div>
+
+  </div>
+
+  <div class="container">
+
     <!-- Refleksi Pengabdian Quote -->
     <div class="field-reflection-card reveal">
-      <div class="reflection-quote-icon">“</div>
+      <div class="reflection-quote-icon">"</div>
       <p class="reflection-quote-text">
         Di Desa Angsana, kami tidak hanya membawa teori akademik dari kampus, melainkan belajar langsung tentang kehangatan gotong royong warga pesisir, kearifan lokal, dan kepedulian terhadap lingkungan desa.
       </p>
@@ -107,7 +171,7 @@ const deliverables = [
         <span class="orn">❧</span> Warisan Resmi untuk Desa Angsana
       </h3>
       <div class="deliverables-grid">
-        {deliverables.map((d, i) => (
+        {deliverables.map((d) => (
           <div class="deliverable-card">
             <span class="deliverable-icon">{d.icon}</span>
             <div class="deliverable-info">

@@ -1,17 +1,9 @@
 ---
 // About.astro — Two-Column Journal Layout
 const stats = [
-  { num: 12, suffix: '',      label: 'Anggota Tim' },
-  { num: 34, suffix: ' hari', label: 'Durasi KKN'  },
-  { num: 8,  suffix: '+',     label: 'Program Kerja'},
-];
-
-const badges = [
-  { label: 'Konservasi Pesisir', type: 'badge-crimson' },
-  { label: 'Edukasi Anak',       type: 'badge-gold'    },
-  { label: 'UMKM Nelayan',       type: 'badge-sepia'   },
-  { label: 'Transplantasi Karang', type: 'badge-ink'   },
-  { label: 'Penanaman Mangrove', type: 'badge-crimson' },
+  { num: 16, suffix: '',       label: 'Anggota Tim' },
+  { num: 1,  suffix: ' bulan', label: 'Durasi KKN'  },
+  { num: 5,  suffix: '',       label: 'Program Kerja'},
 ];
 ---
 
@@ -62,7 +54,7 @@ const badges = [
 
         <p class="about-text drop-cap reveal delay-2">
           KKN bukan hanya kewajiban akademik — ini adalah transformasi.
-          Selama 34 hari, kami dari Universitas Lambung Mangkurat hidup bersama
+          Selama 1 bulan (13 Juli – 10 Agustus 2026), kami dari Universitas Lambung Mangkurat hidup bersama
           masyarakat Desa Angsana, belajar dari kearifan lokal pesisir, dan
           mencoba memberikan dampak nyata lewat program konservasi serta
           pemberdayaan masyarakat nelayan.
@@ -86,13 +78,6 @@ const badges = [
               </div>
               <div class="about-stat-label">{s.label}</div>
             </div>
-          ))}
-        </div>
-
-        <!-- Badges -->
-        <div class="about-badge-row reveal delay-5">
-          {badges.map(b => (
-            <span class={`badge ${b.type}`}>{b.label}</span>
           ))}
         </div>
       </div>

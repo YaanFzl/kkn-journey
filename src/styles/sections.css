@@ -524,6 +524,7 @@
   scrollbar-width: thin;
   scrollbar-color: var(--gold) var(--parchment-200);
   -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
 }
 
 .team-carousel-track::-webkit-scrollbar {
@@ -551,6 +552,8 @@
   transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
   cursor: pointer;
   user-select: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .team-card:hover {
@@ -575,6 +578,7 @@
   display: block;
   filter: sepia(10%) contrast(1.04);
   transition: transform 0.4s ease, filter 0.4s ease;
+  backface-visibility: hidden;
 }
 
 .team-card:hover .team-card-img {
@@ -590,11 +594,10 @@
   font-size: 0.58rem;
   letter-spacing: 0.1em;
   color: var(--gold-300);
-  background: rgba(12, 8, 5, 0.75);
-  backdrop-filter: blur(4px);
+  background: rgba(12, 8, 5, 0.85);
   padding: 2px 8px;
   border-radius: var(--radius-xs);
-  border: 1px solid rgba(194, 160, 112, 0.2);
+  border: 1px solid rgba(194, 160, 112, 0.25);
 }
 
 .team-card-info {

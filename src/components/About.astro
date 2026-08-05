@@ -119,7 +119,7 @@ const teamMembers = [
           {teamMembers.map((m) => (
             <div class="team-card">
               <div class="team-card-image-wrap">
-                <img src={m.image} alt={m.name} class="team-card-img" loading="lazy" />
+                <img src={m.image} alt={m.name} class="team-card-img" loading="lazy" decoding="async" draggable="false" />
                 <span class="team-card-id">#{String(m.id).padStart(2, '0')}</span>
               </div>
               <div class="team-card-info">

@@ -2,72 +2,60 @@
 // Impact.astro — Bab IV: Swipeable Card Carousel
 const prokerOutputs = [
   {
-    icon: '♻️',
+    image: '/assets/images/week1.png',
     num: '01',
     badge: 'Lingkungan & TPS3R',
     badgeType: 'badge-crimson',
     title: 'Pengelolaan Sampah & Edukasi TPS3R',
     location: 'PT. BIB · SDN & SMAN 1 Angsana · TPS3R Desa',
     desc: 'Melakukan aksi pemilahan sampah tukar sembako kolaborasi PT. BIB, edukasi pemilahan sampah organik/anorganik di SDN & SMAN 1 Angsana, serta pendataan awal di TPS3R Desa Angsana.',
-    tag: 'Edukasi & Aksinergi',
-    accent: '#7d1d0e',   // crimson
+    accent: '#7d1d0e',
     accentLight: 'rgba(125,29,14,0.12)',
   },
   {
-    icon: '🧪',
+    image: '/assets/images/week2.png',
     num: '02',
     badge: 'Inovasi Organik',
     badgeType: 'badge-gold',
     title: 'Formulasi Ecoenzym & Pupuk Organik Cair',
     location: 'MTs Syarif Ali · Posko KKN Desa Angsana',
     desc: 'Sosialisasi keberlanjutan Ecoenzym di MTs Syarif Ali, persiapan bahan organik, serta demonstrasi dan sosialisasi pembuatan Pupuk Organik Cair (POC) bersama warga desa.',
-    tag: 'Inovasi & Lingkungan',
     accent: '#a87420',
     accentLight: 'rgba(168,116,32,0.12)',
   },
   {
-    icon: '🌿',
+    image: '/assets/images/week3.png',
     num: '03',
     badge: 'Konservasi Mangrove',
     badgeType: 'badge-sepia',
     title: 'Pemanfaatan Buah Mangrove & Ekowisata',
     location: 'Kawasan Mangrove Angsana · Hijau Lestari',
     desc: 'Survei kawasan mangrove bersama Pak Nuh (Hijau Lestari), eksplorasi potensi ekowisata, dan sosialisasi pemanfaatan buah mangrove (Rhizophora mucronata) untuk olahan Kopi Mangrove.',
-    tag: 'Ekowisata Pesisir',
     accent: '#4a6b3a',
     accentLight: 'rgba(74,107,58,0.12)',
   },
   {
-    icon: '🥟',
+    image: '/assets/images/week4.png',
     num: '04',
     badge: 'Ketahanan Pangan & UMKM',
     badgeType: 'badge-ink',
     title: 'Dimsum Ikan Lajang & Digitalisasi UMKM',
     location: 'Masyarakat & Pelaku UMKM Desa Angsana',
     desc: 'Sosialisasi Gerakan Gemar Makan Ikan melalui inovasi pembuatan Dimsum dari ikan Lajang serta pendampingan materi pemasaran digital untuk pengembangan UMKM lokal.',
-    tag: 'Gemar Ikan & UMKM',
     accent: '#2a4a6b',
     accentLight: 'rgba(42,74,107,0.12)',
   },
   {
-    icon: '🤝',
+    image: '/assets/images/hero.png',
     num: '05',
     badge: 'Aksi Kemasyarakatan',
     badgeType: 'badge-crimson',
     title: 'Gotong Royong & Infrastruktur Pesisir',
     location: 'Koperasi Merah Putih · Kantor Desa · Pantai',
     desc: 'Gotong royong di Koperasi Merah Putih, perbaikan jalan ke Pantai Angsana, Jumat Bersih kantor desa, serta pemasangan bendera merah putih persiapan HUT RI ke-81.',
-    tag: 'Sosialisasi & Bakti',
     accent: '#6b3a2a',
     accentLight: 'rgba(107,58,42,0.12)',
   },
-];
-
-const deliverables = [
-  { icon: '📋', title: 'Rekapitulasi Data TPS3R', detail: 'Dokumen pendataan & alur pemilahan sampah desa' },
-  { icon: '🍾', title: 'Sampel POC & Ecoenzym', detail: 'Formula pupuk organik siap pakai hasil olahan warga' },
-  { icon: '🗺️', title: 'Modul Digitalisasi UMKM', detail: 'Panduan branding & pengolahan Dimsum Ikan Lajang' },
-  { icon: '📜', title: 'Laporan Resmi KKN Kelompok 02', detail: 'Dokumen pertanggungjawaban program kerja ke Pemdes' },
 ];
 ---
 
@@ -114,26 +102,22 @@ const deliverables = [
           data-index={String(i)}
           style={`--card-accent:${p.accent}; --card-accent-light:${p.accentLight}; --card-delay:${i * 0.08}s;`}
         >
-          <!-- Large background number -->
-          <div class="impact-card-bg-num" aria-hidden="true">{p.num}</div>
-
-          <!-- Top strip -->
-          <div class="impact-card-strip">
-            <span class="impact-card-num-label">{p.num} / 05</span>
-            <span class={`badge ${p.badgeType}`}>{p.badge}</span>
+          <!-- Photo strip at top -->
+          <div class="impact-card-photo">
+            <img src={p.image} alt={p.title} loading="lazy" draggable="false" />
+            <!-- Number overlay -->
+            <div class="impact-card-photo-num" aria-hidden="true">{p.num}</div>
+            <!-- Badge overlay -->
+            <div class="impact-card-photo-badge">
+              <span class={`badge ${p.badgeType}`}>{p.badge}</span>
+            </div>
           </div>
 
-          <!-- Icon -->
-          <div class="impact-card-icon">{p.icon}</div>
-
           <!-- Content -->
-          <h3 class="impact-card-title">{p.title}</h3>
-          <p class="impact-card-loc">📍 {p.location}</p>
-          <p class="impact-card-desc">{p.desc}</p>
-
-          <!-- Footer tag -->
-          <div class="impact-card-tag">
-            <span># {p.tag}</span>
+          <div class="impact-card-body">
+            <h3 class="impact-card-title">{p.title}</h3>
+            <p class="impact-card-loc">📍 {p.location}</p>
+            <p class="impact-card-desc">{p.desc}</p>
           </div>
         </div>
       ))}
@@ -155,7 +139,6 @@ const deliverables = [
   </div>
 
   <div class="container">
-
     <!-- Refleksi Pengabdian Quote -->
     <div class="field-reflection-card reveal">
       <div class="reflection-quote-icon">"</div>
@@ -164,24 +147,6 @@ const deliverables = [
       </p>
       <p class="reflection-author">— Catatan Lapangan Mahasiswa KKN Kelompok 2 ULM 2026</p>
     </div>
-
-    <!-- Deliverables / Warisan untuk Desa -->
-    <div class="deliverables-section reveal">
-      <h3 class="deliverables-heading">
-        <span class="orn">❧</span> Warisan Resmi untuk Desa Angsana
-      </h3>
-      <div class="deliverables-grid">
-        {deliverables.map((d) => (
-          <div class="deliverable-card">
-            <span class="deliverable-icon">{d.icon}</span>
-            <div class="deliverable-info">
-              <h4 class="deliverable-title">{d.title}</h4>
-              <p class="deliverable-detail">{d.detail}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-
   </div>
+
 </section>

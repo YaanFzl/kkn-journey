@@ -1,9 +1,28 @@
 ---
-// About.astro — Two-Column Journal Layout
+// About.astro — Two-Column Journal Layout & Team Carousel
 const stats = [
   { num: 16, suffix: '',       label: 'Anggota Tim' },
   { num: 1,  suffix: ' bulan', label: 'Durasi KKN'  },
   { num: 5,  suffix: '',       label: 'Program Kerja'},
+];
+
+const teamMembers = [
+  { id: 1,  name: 'Ahmad Fauzi',     role: 'Ketua Kelompok',      image: '/assets/images/week1.png', prodi: 'Ilmu Kelautan' },
+  { id: 2,  name: 'Siti Rahmah',      role: 'Sekretaris',          image: '/assets/images/week2.png', prodi: 'Agribisnis' },
+  { id: 3,  name: 'Muhammad Iqbal',   role: 'Bendahara',           image: '/assets/images/week3.png', prodi: 'Akuntansi' },
+  { id: 4,  name: 'Nabila Putri',     role: 'Sie Acara',           image: '/assets/images/week4.png', prodi: 'Kedokteran' },
+  { id: 5,  name: 'Rizky Pratama',    role: 'Sie Humas',           image: '/assets/images/hero.png',  prodi: 'Ilmu Komunikasi' },
+  { id: 6,  name: 'Dewi Lestari',     role: 'Sie Logistik',        image: '/assets/images/week1.png', prodi: 'Teknik Sipil' },
+  { id: 7,  name: 'Fajar Nugraha',    role: 'Sie Konsumsi',        image: '/assets/images/week2.png', prodi: 'Teknologi Pangan' },
+  { id: 8,  name: 'Indah Kusuma',     role: 'Sie Publikasi',       image: '/assets/images/week3.png', prodi: 'Biologi' },
+  { id: 9,  name: 'Bagas Aditya',     role: 'Anggota Tim',         image: '/assets/images/week4.png', prodi: 'Teknik Lingkungan' },
+  { id: 10, name: 'Aulia Zahra',      role: 'Anggota Tim',         image: '/assets/images/hero.png',  prodi: 'Farmasi' },
+  { id: 11, name: 'Dimi Kurnia',      role: 'Anggota Tim',         image: '/assets/images/week1.png', prodi: 'Kehutanan' },
+  { id: 12, name: 'Maya Safitri',     role: 'Anggota Tim',         image: '/assets/images/week2.png', prodi: 'Hukum' },
+  { id: 13, name: 'Reza Hendra',      role: 'Anggota Tim',         image: '/assets/images/week3.png', prodi: 'Perikanan' },
+  { id: 14, name: 'Tia Maulida',      role: 'Anggota Tim',         image: '/assets/images/week4.png', prodi: 'Psikologi' },
+  { id: 15, name: 'Hafiz Anshari',    role: 'Anggota Tim',         image: '/assets/images/hero.png',  prodi: 'Ilmu Komputer' },
+  { id: 16, name: 'Nurfadilah',       role: 'Anggota Tim',         image: '/assets/images/week1.png', prodi: 'Pendidikan Biologi' },
 ];
 ---
 
@@ -82,6 +101,36 @@ const stats = [
         </div>
       </div>
 
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         16 TEAM MEMBERS CAROUSEL
+    ═══════════════════════════════════════ -->
+    <div class="team-section reveal">
+      <div class="team-header">
+        <h3 class="team-title">
+          <span class="orn">❧</span> 16 Anggota Tim Pengabdi
+        </h3>
+        <p class="team-hint">Geser untuk melihat seluruh anggota tim</p>
+      </div>
+
+      <div class="team-carousel-container">
+        <div class="team-carousel-track">
+          {teamMembers.map((m) => (
+            <div class="team-card">
+              <div class="team-card-image-wrap">
+                <img src={m.image} alt={m.name} class="team-card-img" loading="lazy" />
+                <span class="team-card-id">#{String(m.id).padStart(2, '0')}</span>
+              </div>
+              <div class="team-card-info">
+                <h4 class="team-card-name">{m.name}</h4>
+                <p class="team-card-role">{m.role}</p>
+                <p class="team-card-prodi">{m.prodi}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
 
     <!-- Bottom ornamental rule -->

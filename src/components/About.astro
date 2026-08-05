@@ -7,22 +7,22 @@ const stats = [
 ];
 
 const teamMembers = [
-  { id: 1,  name: 'Ahmad Ryan Faizal',       role: 'Koordinator Desa',     image: '/assets/images/members/Ahmad Ryan Faizal.JPG' },
-  { id: 2,  name: 'Cindy Meiliawan',          role: 'Sekretaris',            image: '/assets/images/members/Cindy Meiliawan.jpg' },
-  { id: 3,  name: 'Tania Yuanda',             role: 'Sekretaris',            image: '/assets/images/members/Tania Yuanda.jpeg' },
-  { id: 4,  name: 'Nur Zahwa',                role: 'Bendahara',             image: '/assets/images/members/Nur Zahwa.jpg' },
-  { id: 5,  name: 'Muhammad Syarif',          role: 'Koordinator Acara',     image: '/assets/images/members/Muhammad Syarif.JPG' },
-  { id: 6,  name: 'Kezia Atalia Samosir',     role: 'Acara',                 image: '/assets/images/members/Kezia Atalia Samosir.jpg' },
-  { id: 7,  name: 'Anes',                     role: 'Acara',                 image: '/assets/images/members/Anes.jpg' },
-  { id: 8,  name: 'Hamdi Fansuri',            role: 'Koordinator Humas',     image: '/assets/images/members/Hamdi Fansuri.JPG' },
-  { id: 9,  name: 'Wahid Nor Raihan',         role: 'Koordinator PDD',       image: '/assets/images/members/Wahid Nor Raihan.JPG' },
-  { id: 10, name: 'Irfi Yusroini Pribadi',    role: 'PDD',                   image: '/assets/images/members/Irfi Yusroini Pribadi.JPG' },
-  { id: 11, name: 'Andini Prasetya N.',       role: 'PDD',                   image: '/assets/images/members/Andini Prasetya N.jpeg' },
-  { id: 12, name: 'Dakin Gultom',             role: 'Koordinator Logistik',  image: '/assets/images/members/Dakin Gultom.jpg' },
-  { id: 13, name: 'Candra Permana',           role: 'Logistik',              image: '/assets/images/members/Candra Permana.JPG' },
-  { id: 14, name: 'Meita Amelia Putri',       role: 'Logistik',              image: '/assets/images/members/Meita Amelia Putri.jpg' },
-  { id: 15, name: 'Laili Maulida',            role: 'Koordinator Konsumsi',  image: '/assets/images/members/Laili Maulida.jpg' },
-  { id: 16, name: 'Rahdatia Silva',           role: 'Konsumsi',              image: '/assets/images/members/Rahdatia Silva.JPG' },
+  { id: 1,  name: 'Ahmad Ryan Faizal',       role: 'Koordinator Desa',     image: '/assets/images/members/Ahmad Ryan Faizal.JPG',        pos: 'center 45%' },
+  { id: 2,  name: 'Cindy Meiliawan',          role: 'Sekretaris',            image: '/assets/images/members/Cindy Meiliawan.jpg',           pos: 'center 50%' },
+  { id: 3,  name: 'Tania Yuanda',             role: 'Sekretaris',            image: '/assets/images/members/Tania Yuanda.jpeg',            pos: 'center 65%' },
+  { id: 4,  name: 'Nur Zahwa',                role: 'Bendahara',             image: '/assets/images/members/Nur Zahwa.jpg',                 pos: 'center 60%' },
+  { id: 5,  name: 'Muhammad Syarif',          role: 'Koordinator Acara',     image: '/assets/images/members/Muhammad Syarif.JPG',         pos: 'center 50%' },
+  { id: 6,  name: 'Kezia Atalia Samosir',     role: 'Acara',                 image: '/assets/images/members/Kezia Atalia Samosir.jpg',      pos: 'center 75%' },
+  { id: 7,  name: 'Anes',                     role: 'Acara',                 image: '/assets/images/members/Anes.jpg',                     pos: 'center 65%' },
+  { id: 8,  name: 'Hamdi Fansuri',            role: 'Koordinator Humas',     image: '/assets/images/members/Hamdi Fansuri.JPG',            pos: 'center 45%' },
+  { id: 9,  name: 'Wahid Nor Raihan',         role: 'Koordinator PDD',       image: '/assets/images/members/Wahid Nor Raihan.JPG',          pos: 'center 45%' },
+  { id: 10, name: 'Irfi Yusroini Pribadi',    role: 'PDD',                   image: '/assets/images/members/Irfi Yusroini Pribadi.JPG',     pos: 'center 75%' },
+  { id: 11, name: 'Andini Prasetya N.',       role: 'PDD',                   image: '/assets/images/members/Andini Prasetya N.jpeg',        pos: 'center 88%' },
+  { id: 12, name: 'Dakin Gultom',             role: 'Koordinator Logistik',  image: '/assets/images/members/Dakin Gultom.jpg',             pos: 'center 78%' },
+  { id: 13, name: 'Candra Permana',           role: 'Logistik',              image: '/assets/images/members/Candra Permana.JPG',           pos: 'center 75%' },
+  { id: 14, name: 'Meita Amelia Putri',       role: 'Logistik',              image: '/assets/images/members/Meita Amelia Putri.jpg',       pos: 'center 85%' },
+  { id: 15, name: 'Laili Maulida',            role: 'Koordinator Konsumsi',  image: '/assets/images/members/Laili Maulida.jpg',            pos: 'center 60%' },
+  { id: 16, name: 'Rahdatia Silva',           role: 'Konsumsi',              image: '/assets/images/members/Rahdatia Silva.JPG',           pos: 'center 60%' },
 ];
 ---
 
@@ -119,7 +119,15 @@ const teamMembers = [
           {teamMembers.map((m) => (
             <div class="team-card">
               <div class="team-card-image-wrap">
-                <img src={m.image} alt={m.name} class="team-card-img" loading="lazy" decoding="async" draggable="false" />
+                <img
+                  src={m.image}
+                  alt={m.name}
+                  class="team-card-img"
+                  style={m.pos ? `--pos:${m.pos};` : undefined}
+                  loading="lazy"
+                  decoding="async"
+                  draggable="false"
+                />
                 <span class="team-card-id">#{String(m.id).padStart(2, '0')}</span>
               </div>
               <div class="team-card-info">

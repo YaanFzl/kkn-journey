@@ -400,9 +400,9 @@
 .about-image {
   display: block;
   width: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/3;
   object-fit: cover;
-  filter: sepia(20%) contrast(1.06) brightness(0.97) saturate(0.88);
+  filter: sepia(12%) contrast(1.04) brightness(0.98) saturate(0.95);
 }
 
 .about-photo-caption {

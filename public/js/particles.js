@@ -156,27 +156,42 @@ class ParticleSystem {
   }
 }
 
-// ——— Cursor Trail ———
+// ——— Cursor Trail — Ink Dust ———
 class CursorTrail {
   constructor() {
     this.canvas = document.createElement('canvas');
     this.canvas.style.cssText = `
       position: fixed; inset: 0; pointer-events: none;
-      z-index: 399; mix-blend-mode: screen;
+      z-index: 399;
     `;
     document.body.appendChild(this.canvas);
-    this.ctx = this.canvas.getContext('2d');
-    this.points = [];
-    this.mouse = { x: -1000, y: -1000 };
-    this.maxPoints = 30;
+    this.ctx    = this.canvas.getContext('2d');
+    this.sparks = [];
+    this.mouse  = { x: -1000, y: -1000 };
+    this.last   = { x: -1000, y: -1000 };
+
+    // Ink dust palette — warm parchment gold + crimson + mist
+    this.palette = [
+      [194, 160, 112],   // parchment gold
+      [168, 116,  32],   // deep gold
+      [125,  29,  14],   // crimson
+      [200, 185, 155],   // light parchment
+      [160, 140, 100],   // sand
+    ];
 
     this.resize();
     window.addEventListener('resize', () => this.resize());
     window.addEventListener('mousemove', (e) => {
       this.mouse = { x: e.clientX, y: e.clientY };
-      this.points.unshift({ ...this.mouse, age: 0 });
-      if (this.points.length > this.maxPoints) {
-        this.points.pop();
+
+      // Only spawn if cursor moved enough (avoids burst when idle)
+      const dx = e.clientX - this.last.x;
+      const dy = e.clientY - this.last.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist > 4) {
+        this.spawnSparks(e.clientX, e.clientY, dist);
+        this.last = { x: e.clientX, y: e.clientY };
       }
     });
 
@@ -188,33 +203,67 @@ class CursorTrail {
     this.canvas.height = window.innerHeight;
   }
 
+  spawnSparks(x, y, speed) {
+    // More sparks when moving fast, fewer when slow
+    const count = Math.min(4, Math.floor(speed / 8) + 1);
+
+    for (let i = 0; i < count; i++) {
+      const [r, g, b] = this.palette[Math.floor(Math.random() * this.palette.length)];
+      const angle  = Math.random() * Math.PI * 2;
+      const spread = 1.5 + Math.random() * 2.5;
+
+      this.sparks.push({
+        x,
+        y,
+        vx: Math.cos(angle) * spread * 0.4 + (Math.random() - 0.5) * 0.6,
+        vy: Math.sin(angle) * spread * 0.4 - Math.random() * 0.8, // slight upward
+        size: 0.8 + Math.random() * 2.0,
+        alpha: 0.55 + Math.random() * 0.35,
+        decay: 0.032 + Math.random() * 0.028,
+        gravity: 0.04 + Math.random() * 0.03,
+        r, g, b,
+      });
+    }
+
+    // Cap to avoid memory growth
+    if (this.sparks.length > 120) {
+      this.sparks.splice(0, this.sparks.length - 120);
+    }
+  }
+
   animate() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    for (let i = 0; i < this.points.length - 1; i++) {
-      const p = this.points[i];
-      const next = this.points[i + 1];
-      const t = 1 - i / this.maxPoints;
-      const alpha = t * 0.4;
+    for (let i = this.sparks.length - 1; i >= 0; i--) {
+      const s = this.sparks[i];
+
+      // Physics
+      s.vy  += s.gravity;
+      s.x   += s.vx;
+      s.y   += s.vy;
+      s.vx  *= 0.95;
+      s.alpha -= s.decay;
+
+      if (s.alpha <= 0) {
+        this.sparks.splice(i, 1);
+        continue;
+      }
+
+      // Draw — soft glowing dot
+      const grad = this.ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.size * 2);
+      grad.addColorStop(0, `rgba(${s.r},${s.g},${s.b},${s.alpha})`);
+      grad.addColorStop(1, `rgba(${s.r},${s.g},${s.b},0)`);
 
       this.ctx.beginPath();
-      this.ctx.moveTo(p.x, p.y);
-      this.ctx.lineTo(next.x, next.y);
-      this.ctx.strokeStyle = `rgba(45, 125, 210, ${alpha})`;
-      this.ctx.lineWidth = t * 3;
-      this.ctx.lineCap = 'round';
-      this.ctx.stroke();
-
-      // Green trail
-      this.ctx.beginPath();
-      this.ctx.arc(p.x, p.y, t * 1.5, 0, Math.PI * 2);
-      this.ctx.fillStyle = `rgba(141, 190, 106, ${alpha * 0.6})`;
+      this.ctx.arc(s.x, s.y, s.size * 2, 0, Math.PI * 2);
+      this.ctx.fillStyle = grad;
       this.ctx.fill();
     }
 
     requestAnimationFrame(() => this.animate());
   }
 }
+
 
 window.ParticleSystem = ParticleSystem;
 window.CursorTrail = CursorTrail;

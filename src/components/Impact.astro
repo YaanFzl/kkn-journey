@@ -1,64 +1,122 @@
 ---
-// Impact.astro — Catatan Lapangan (Field Notes) Style
-const stats = [
-  { icon: '🌱', count: 1500, suffix: '+', label: 'Bibit Mangrove'      },
-  { icon: '🪸', count: 120,  suffix: '+', label: 'Transplantasi Karang' },
-  { icon: '🛶', count: 8,    suffix: '',  label: 'Kelompok Nelayan'     },
-  { icon: '🛍️', count: 25,   suffix: '+', label: 'UMKM Dilatih'         },
+// Impact.astro — Bab IV: Catatan & Jejak Pengabdian (Output Realistis Program Kerja)
+const prokerOutputs = [
+  {
+    icon: '♻️',
+    badge: 'Lingkungan & TPS3R',
+    badgeType: 'badge-crimson',
+    title: 'Pengelolaan Sampah & Edukasi TPS3R',
+    location: 'PT. BIB, SDN & SMAN 1 Angsana, TPS3R Desa',
+    desc: 'Melakukan aksi pemilahan sampah tukar sembako kolaborasi PT. BIB, edukasi pemilahan sampah organik/anorganik di SDN & SMAN 1 Angsana, serta pendataan awal di TPS3R Desa Angsana.',
+    tag: 'Edukasi & Aksinergi',
+  },
+  {
+    icon: '🧪',
+    badge: 'Inovasi Organik',
+    badgeType: 'badge-gold',
+    title: 'Formulasi Ecoenzym & Pupuk Organik Cair',
+    location: 'MTs Syarif Ali & Posko KKN Desa Angsana',
+    desc: 'Sosialisasi keberlanjutan Ecoenzym di MTs Syarif Ali, persiapan bahan organik, serta demonstrasi dan sosialisasi pembuatan Pupuk Organik Cair (POC) bersama warga desa.',
+    tag: 'Inovasi & Lingkungan',
+  },
+  {
+    icon: '🌿',
+    badge: 'Konservasi Mangrove',
+    badgeType: 'badge-sepia',
+    title: 'Pemanfaatan Buah Mangrove & Ekowisata',
+    location: 'Kawasan Mangrove Angsana & Hijau Lestari',
+    desc: 'Survei kawasan mangrove bersama Pak Nuh (Hijau Lestari), eksplorasi potensi ekowisata, dan sosialisasi pemanfaatan buah mangrove (Rhizophora mucronata) untuk olahan Kopi Mangrove.',
+    tag: 'Ekowisata Pesisir',
+  },
+  {
+    icon: '🥟',
+    badge: 'Ketahanan Pangan & UMKM',
+    badgeType: 'badge-ink',
+    title: 'Dimsum Ikan Lajang & Digitalisasi UMKM',
+    location: 'Masyarakat & Pelaku UMKM Desa Angsana',
+    desc: 'Sosialisasi Gerakan Gemar Makan Ikan melalui inovasi pembuatan Dimsum dari ikan Lajang serta pendampingan materi pemasaran digital untuk pengembangan UMKM lokal.',
+    tag: 'Gemar Ikan & UMKM',
+  },
+  {
+    icon: '🤝',
+    badge: 'Aksi Kemasyarakatan',
+    badgeType: 'badge-crimson',
+    title: 'Gotong Royong & Infrastruktur Pesisir',
+    location: 'Koperasi Merah Putih, Kantor Desa, & Pantai',
+    desc: 'Gotong royong di Koperasi Merah Putih, perbaikan jalan ke Pantai Angsana, Jumat Bersih kantor desa, serta pemasangan bendera merah putih persiapan HUT RI ke-81.',
+    tag: 'Sosialisasi & Bakti',
+  },
 ];
 
-const bars = [
-  { label: 'Penanaman Mangrove & Konservasi Pesisir',       pct: 95 },
-  { label: 'Edukasi & Literasi Anak Nelayan',               pct: 88 },
-  { label: 'Transplantasi & Restorasi Terumbu Karang',      pct: 75 },
-  { label: 'Pendampingan UMKM & Ekowisata Pesisir',         pct: 82 },
+const deliverables = [
+  { icon: '📋', title: 'Rekapitulasi Data TPS3R', detail: 'Dokumen pendataan & alur pemilahan sampah desa' },
+  { icon: '🍾', title: 'Sampel POC & Ecoenzym', detail: 'Formula pupuk organik siap pakai hasil olahan warga' },
+  { icon: '🗺️', title: 'Modul Digitalisasi UMKM', detail: 'Panduan branding & pengolahan Dimsum Ikan Lajang' },
+  { icon: '📜', title: 'Laporan Resmi KKN Kelompok 02', detail: 'Dokumen pertanggungjawaban program kerja ke Pemdes' },
 ];
 ---
 
-<section id="impact" aria-label="Dampak KKN">
+<section id="impact" aria-label="Jejak Pengabdian KKN">
   <div class="container">
 
     <!-- Header -->
     <div class="impact-header reveal">
       <p class="chapter-eyebrow">
         <span class="orn">❧</span>
-        Bab IV — Catatan Lapangan
+        Bab IV — Catatan & Jejak Pengabdian
       </p>
       <h2 class="section-heading" style="color:var(--parchment-400);">
-        Angka yang<br>
-        <em style="color:var(--gold-300);">Bercerita</em>
+        Output & Warisan<br>
+        <em style="color:var(--gold-300);">Nyata Lapangan</em>
       </h2>
-      <p style="color:var(--parchment-800); max-width:480px; margin:var(--sp-4) auto 0; font-size:var(--fs-sm); font-style:italic;">
-        Di balik setiap kenangan, ada dampak yang terus berjalan bahkan setelah kami pergi dari Desa Angsana.
+      <p style="color:var(--parchment-800); max-width:520px; margin:var(--sp-4) auto 0; font-size:var(--fs-sm); font-style:italic;">
+        Bukan sekadar deretan angka, melainkan karya nyata, inovasi lingkungan, dan hubungan hangat yang kami tinggalkan untuk Desa Angsana.
       </p>
     </div>
 
-    <!-- Stats grid -->
-    <div class="impact-grid">
-      {stats.map((s, i) => (
-        <div class={`impact-card reveal delay-${i + 1}`}>
-          <span class="impact-icon">{s.icon}</span>
-          <div class="impact-num">
-            <span data-count={s.count} data-suffix={s.suffix}>0</span>
+    <!-- 5 Pilar Output Program Kerja Grid -->
+    <div class="proker-output-grid">
+      {prokerOutputs.map((p, i) => (
+        <div class={`proker-output-card reveal delay-${(i % 3) + 1}`}>
+          <div class="proker-output-header">
+            <span class="proker-output-icon">{p.icon}</span>
+            <span class={`badge ${p.badgeType}`}>{p.badge}</span>
           </div>
-          <div class="impact-label">{s.label}</div>
+          <h3 class="proker-output-title">{p.title}</h3>
+          <p class="proker-output-location">📍 {p.location}</p>
+          <p class="proker-output-desc">{p.desc}</p>
+          <div class="proker-output-footer">
+            <span class="proker-output-tag"># {p.tag}</span>
+          </div>
         </div>
       ))}
     </div>
 
-    <!-- Progress bars -->
-    <div class="impact-bars">
-      {bars.map((b, i) => (
-        <div class={`impact-bar-row reveal delay-${i + 1}`}>
-          <div class="impact-bar-header">
-            <span class="impact-bar-label">{b.label}</span>
-            <span class="impact-bar-pct">{b.pct}%</span>
+    <!-- Refleksi Pengabdian Quote -->
+    <div class="field-reflection-card reveal">
+      <div class="reflection-quote-icon">“</div>
+      <p class="reflection-quote-text">
+        Di Desa Angsana, kami tidak hanya membawa teori akademik dari kampus, melainkan belajar langsung tentang kehangatan gotong royong warga pesisir, kearifan lokal, dan kepedulian terhadap lingkungan desa.
+      </p>
+      <p class="reflection-author">— Catatan Lapangan Mahasiswa KKN Kelompok 2 ULM 2026</p>
+    </div>
+
+    <!-- Deliverables / Warisan untuk Desa -->
+    <div class="deliverables-section reveal">
+      <h3 class="deliverables-heading">
+        <span class="orn">❧</span> Warisan Resmi untuk Desa Angsana
+      </h3>
+      <div class="deliverables-grid">
+        {deliverables.map((d, i) => (
+          <div class="deliverable-card">
+            <span class="deliverable-icon">{d.icon}</span>
+            <div class="deliverable-info">
+              <h4 class="deliverable-title">{d.title}</h4>
+              <p class="deliverable-detail">{d.detail}</p>
+            </div>
           </div>
-          <div class="impact-bar-track">
-            <div class="impact-bar-fill" data-width={b.pct}></div>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
 
   </div>

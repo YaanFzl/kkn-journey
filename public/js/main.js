@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   animateCursor();
 
   // Cursor hover effect on interactive elements
-  const hoverEls = document.querySelectorAll('a, button, .gallery-item, .week-card, .impact-card, .glass-card');
+  const hoverEls = document.querySelectorAll('a, button, .gallery-item, .week-card, .impact-card, .glass-card, .btn-expand-logbook, .btn-view-gallery');
   hoverEls.forEach((el) => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -110,12 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   sectionEls.forEach((s) => sectionObserver.observe(s));
 
-  /* ——— Week card expand on click (mobile) ——— */
-  document.querySelectorAll('.week-card').forEach((card) => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('expanded');
-    });
-  });
+  /* ——— Logbook Accordion ——— */
+  if (window.LogbookController) {
+    new window.LogbookController();
+  }
 
   /* ——— Typewriter effect on hero subtitle ——— */
   const typingEl = document.getElementById('typing-text');

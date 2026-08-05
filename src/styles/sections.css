@@ -549,13 +549,694 @@
   border: none;
 }
 
+/* ==============================
+   LOGBOOK — Card "Buka Logbook" Button
+   ============================== */
+.btn-open-logbook {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  border: none;
+  border-top: 1px solid var(--parchment-800);
+  background: linear-gradient(135deg, var(--parchment-300), var(--parchment-400));
+  font-family: var(--font-caps);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+
+.btn-open-logbook:hover {
+  background: linear-gradient(135deg, rgba(125,29,14,0.06), rgba(125,29,14,0.03));
+  color: var(--crimson-600);
+  letter-spacing: 0.28em;
+}
+
+.btn-open-logbook-arrow {
+  font-size: 0.9rem;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  line-height: 1;
+}
+
+.btn-open-logbook:hover .btn-open-logbook-arrow {
+  transform: translateX(4px);
+}
+
+/* ==============================
+   LOGBOOK OVERLAY — Full-screen Journal
+   ============================== */
+#logbook-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#logbook-overlay.open {
+  opacity: 1;
+}
+
+/* Backdrop */
+.logbook-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(12, 8, 5, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Close button */
+#logbook-close {
+  position: absolute;
+  top: var(--sp-5);
+  right: var(--sp-5);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(194,160,112,0.3);
+  border-radius: 50%;
+  background: rgba(12,8,5,0.5);
+  color: var(--parchment-400);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#logbook-close:hover {
+  background: rgba(125, 29, 14, 0.3);
+  border-color: var(--crimson);
+  color: var(--parchment-300);
+  transform: rotate(90deg);
+}
+
+/* ==============================
+   LOGBOOK — Journal Page
+   ============================== */
+.logbook-journal {
+  position: relative;
+  z-index: 2;
+  width: 92vw;
+  max-width: 720px;
+  height: 88vh;
+  max-height: 900px;
+  display: flex;
+  flex-direction: column;
+  background: var(--parchment-300);
+  border: 1px solid var(--parchment-800);
+  box-shadow:
+    0 25px 80px rgba(12,8,5,0.5),
+    0 4px 20px rgba(12,8,5,0.3),
+    8px 8px 0 var(--parchment-800),
+    10px 10px 0 rgba(160,132,90,0.2);
+  /* Page-open animation */
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+}
+
+#logbook-overlay.open .logbook-journal {
+  transform: translateY(0) scale(1);
+}
+
+/* Content transition when switching weeks */
+.logbook-journal.logbook-transitioning {
+  opacity: 0.4;
+  transform: scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Top crimson accent line */
+.logbook-journal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--crimson), var(--gold), var(--crimson));
+}
+
+/* Left margin line (book style) */
+.logbook-journal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 52px;
+  width: 1px;
+  background: rgba(125, 29, 14, 0.12);
+  pointer-events: none;
+}
+
+/* ==============================
+   LOGBOOK — Journal Header
+   ============================== */
+.logbook-journal-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+  padding: var(--sp-6) var(--sp-6) var(--sp-4);
+  padding-left: 72px; /* past margin line */
+  flex-shrink: 0;
+}
+
+.logbook-journal-roman {
+  position: absolute;
+  left: 0;
+  top: var(--sp-5);
+  width: 52px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-style: italic;
+  color: var(--crimson);
+  opacity: 0.25;
+  line-height: 1;
+}
+
+.logbook-journal-meta {
+  flex: 1;
+}
+
+.logbook-journal-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-style: italic;
+  color: var(--ink-800);
+  line-height: 1.3;
+  margin: 0;
+}
+
+.logbook-journal-range {
+  font-family: var(--font-caps);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin: var(--sp-1) 0 0;
+}
+
+.logbook-journal-divider {
+  height: 1px;
+  margin: 0 var(--sp-6) 0 72px;
+  background: linear-gradient(90deg, var(--parchment-800), transparent);
+  flex-shrink: 0;
+}
+
+/* ==============================
+   LOGBOOK — Scrollable Content
+   ============================== */
+.logbook-journal-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--sp-4) var(--sp-6) var(--sp-4) 72px;
+  /* Custom scrollbar for the journal */
+  scrollbar-width: thin;
+  scrollbar-color: var(--parchment-800) transparent;
+}
+
+.logbook-journal-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.logbook-journal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.logbook-journal-scroll::-webkit-scrollbar-thumb {
+  background: var(--parchment-800);
+  border-radius: 3px;
+}
+
+/* Week content panels — only active one visible */
+.logbook-week-content {
+  display: none;
+}
+
+.logbook-week-content.active {
+  display: block;
+  animation: logbookFadeIn 0.35s ease both;
+}
+
+@keyframes logbookFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ==============================
+   LOGBOOK PAGE 4 — Grand Finale Layout
+   ============================== */
+.logbook-finale-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.logbook-finale-badge {
+  font-family: var(--font-caps);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-2);
+}
+
+.logbook-finale-card {
+  background: var(--parchment-200);
+  border: 1px solid var(--parchment-800);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-4) var(--sp-5);
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logbook-finale-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.logbook-finale-card.featured {
+  background: linear-gradient(135deg, var(--parchment-200), rgba(168, 116, 32, 0.08));
+  border-color: var(--gold);
+  border-left: 4px solid var(--gold);
+}
+
+.logbook-finale-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-3);
+  padding-bottom: var(--sp-2);
+  border-bottom: 1px dashed rgba(194, 160, 112, 0.4);
+}
+
+.logbook-finale-phase {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-style: italic;
+  color: var(--ink-800);
+}
+
+.logbook-finale-date {
+  font-family: var(--font-caps);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  font-weight: 700;
+}
+
+/* Wax Seal Epilogue Card */
+.logbook-epilogue-card {
+  margin-top: var(--sp-4);
+  padding: var(--sp-6) var(--sp-5);
+  background: linear-gradient(135deg, var(--parchment-400), var(--parchment-300));
+  border: 1.5px solid var(--gold);
+  border-radius: var(--radius-md);
+  text-align: center;
+  position: relative;
+  box-shadow: inset 0 0 15px rgba(168, 116, 32, 0.08);
+}
+
+.wax-seal-mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 33%, var(--crimson-600), var(--crimson), var(--crimson-900));
+  color: var(--parchment-300);
+  font-family: var(--font-caps);
+  font-size: 0.55rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-bottom: var(--sp-3);
+  box-shadow: 0 3px 10px rgba(125, 29, 14, 0.35);
+}
+
+.epilogue-quote {
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  font-style: italic;
+  color: var(--ink-800);
+  line-height: 1.6;
+  margin-bottom: var(--sp-2);
+}
+
+.epilogue-signature {
+  font-family: var(--font-light);
+  font-size: var(--fs-xs);
+  color: var(--ink-500);
+  font-style: italic;
+  margin-bottom: var(--sp-4);
+}
+
+.btn-epilogue-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--crimson);
+  color: var(--parchment-200);
+  font-family: var(--font-caps);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(125, 29, 14, 0.3);
+}
+
+.btn-epilogue-link:hover {
+  background: var(--crimson-600);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(125, 29, 14, 0.4);
+}
+
+/* ==============================
+   LOGBOOK — Day Entry (Timeline Layout)
+   ============================== */
+.logbook-entry {
+  display: flex;
+  gap: var(--sp-4);
+  padding: var(--sp-4) 0;
+  border-bottom: 1px solid rgba(194, 160, 112, 0.2);
+  transition: background 0.25s ease;
+}
+
+.logbook-entry:last-child {
+  border-bottom: none;
+}
+
+.logbook-entry:hover {
+  background: rgba(168, 116, 32, 0.03);
+  margin: 0 calc(var(--sp-3) * -1);
+  padding-left: var(--sp-3);
+  padding-right: var(--sp-3);
+  border-radius: var(--radius-sm);
+}
+
+/* Date column */
+.logbook-entry-date {
+  flex-shrink: 0;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding-top: 2px;
+}
+
+.logbook-entry-num {
+  font-family: var(--font-light);
+  font-size: 1.6rem;
+  font-style: italic;
+  color: var(--crimson);
+  line-height: 1;
+  opacity: 0.5;
+}
+
+.logbook-entry-date-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.logbook-entry-date-text {
+  font-family: var(--font-caps);
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.logbook-entry-day-name {
+  font-family: var(--font-light);
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--ink-400);
+}
+
+/* Content column */
+.logbook-entry-body {
+  flex: 1;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.logbook-entry-activity {
+  font-family: var(--font-serif);
+  font-size: var(--fs-sm);
+  color: var(--ink-600);
+  line-height: 1.75;
+  margin: 0 0 var(--sp-2);
+  position: relative;
+  padding-left: var(--sp-4);
+}
+
+.logbook-entry-activity::before {
+  content: '❧';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--gold);
+  font-size: 0.7rem;
+  line-height: 1.75;
+}
+
+.logbook-entry-activity:last-of-type {
+  margin-bottom: var(--sp-2);
+}
+
+/* Photo slot inside entry */
+.logbook-entry-photo {
+  padding-left: var(--sp-4);
+  margin-top: var(--sp-1);
+}
+
+.logbook-photo-empty {
+  font-family: var(--font-caps);
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-400);
+  opacity: 0.6;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border: 1px dashed var(--parchment-800);
+  border-radius: var(--radius-sm);
+  background: var(--parchment-200);
+  transition: border-color 0.25s ease;
+}
+
+.logbook-photo-empty:hover {
+  border-color: var(--gold);
+  opacity: 0.8;
+}
+
+/* Gallery bridge button */
+.btn-view-gallery {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border: 1px solid rgba(168, 116, 32, 0.3);
+  border-radius: var(--radius-sm);
+  background: var(--gold-pale);
+  font-family: var(--font-caps);
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-900);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-view-gallery:hover {
+  background: rgba(168, 116, 32, 0.18);
+  border-color: var(--gold);
+  color: var(--crimson);
+  transform: translateX(3px);
+}
+
+/* ==============================
+   LOGBOOK — Footer Navigation
+   ============================== */
+.logbook-journal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-3) var(--sp-5);
+  border-top: 1px solid var(--parchment-800);
+  background: linear-gradient(135deg, var(--parchment-400), var(--parchment-300));
+  flex-shrink: 0;
+}
+
+.logbook-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid rgba(194, 160, 112, 0.3);
+  border-radius: var(--radius-sm);
+  background: none;
+  font-family: var(--font-caps);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logbook-nav-btn:hover:not(:disabled) {
+  border-color: var(--gold);
+  color: var(--crimson);
+  background: rgba(168, 116, 32, 0.06);
+}
+
+.logbook-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.logbook-nav-arrow {
+  font-size: 1.1rem;
+  line-height: 1;
+  font-family: var(--font-light);
+  color: var(--crimson);
+}
+
+.logbook-nav-label {
+  font-size: 0.58rem;
+}
+
+.logbook-page-indicator {
+  font-family: var(--font-light);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  color: var(--ink-400);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.logbook-page-sep {
+  opacity: 0.4;
+}
+
+/* ==============================
+   GALLERY — Item Highlight (from Bab 2 bridge)
+   ============================== */
+@keyframes galleryHighlight {
+  0%   { box-shadow: 0 0 0 0 rgba(168, 116, 32, 0.5); }
+  50%  { box-shadow: 0 0 0 8px rgba(168, 116, 32, 0.2); }
+  100% { box-shadow: 0 0 0 0 rgba(168, 116, 32, 0); }
+}
+
+.gallery-item-highlight {
+  animation: galleryHighlight 1.5s ease;
+}
+
+/* ==============================
+   TIMELINE — Responsive
+   ============================== */
 @media (max-width: 1024px) {
   .weeks-container { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .weeks-container { grid-template-columns: 1fr; }
+
+  /* Logbook overlay mobile adjustments */
+  .logbook-journal {
+    width: 96vw;
+    height: 94vh;
+    max-height: none;
+  }
+
+  .logbook-journal::after {
+    left: 12px;
+  }
+
+  .logbook-journal-header {
+    padding: var(--sp-4) var(--sp-4) var(--sp-3);
+    padding-left: 32px;
+    gap: var(--sp-3);
+  }
+
+  .logbook-journal-roman {
+    width: 28px;
+    font-size: 1.2rem;
+    top: var(--sp-4);
+  }
+
+  .logbook-journal-divider {
+    margin-left: 32px;
+    margin-right: var(--sp-4);
+  }
+
+  .logbook-journal-scroll {
+    padding: var(--sp-3) var(--sp-4) var(--sp-3) 32px;
+  }
+
+  .logbook-entry {
+    flex-direction: column;
+    gap: var(--sp-2);
+  }
+
+  .logbook-entry-date {
+    width: auto;
+    flex-direction: row;
+    gap: var(--sp-2);
+    align-items: baseline;
+  }
+
+  .logbook-entry-num {
+    font-size: 1.1rem;
+  }
+
+  .logbook-entry-date-info {
+    flex-direction: row;
+    gap: var(--sp-2);
+  }
+
+  .logbook-journal-footer {
+    padding: var(--sp-2) var(--sp-3);
+  }
+
+  .logbook-nav-label {
+    display: none;
+  }
+
+  #logbook-close {
+    top: var(--sp-3);
+    right: var(--sp-3);
+    width: 38px;
+    height: 38px;
+  }
 }
+
 
 /* ==============================
    GALLERY — Vintage Photo Exhibition
@@ -923,97 +1604,199 @@
   color: var(--parchment-800);
 }
 
-.impact-grid {
+/* 5 Pilar Proker Output Grid */
+.proker-output-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--sp-5);
   margin-bottom: var(--sp-10);
   position: relative;
   z-index: 1;
 }
 
-.impact-card {
-  background: rgba(249,245,234,0.04);
-  border: 1px solid rgba(194,160,112,0.15);
-  padding: var(--sp-6) var(--sp-5);
-  text-align: center;
+.proker-output-card {
+  background: rgba(26, 16, 6, 0.45);
+  border: 1px solid rgba(194, 160, 112, 0.25);
   border-radius: var(--radius-sm);
-  transition: background var(--transition-base);
-  position: relative;
+  padding: var(--sp-5);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
-.impact-card::before {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  border: 1px solid rgba(168,116,32,0.1);
-  pointer-events: none;
+.proker-output-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold-400);
+  box-shadow: 0 8px 24px rgba(12, 8, 5, 0.4);
 }
 
-.impact-card:hover { background: rgba(249,245,234,0.07); }
+.proker-output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-3);
+}
 
-.impact-icon { font-size: 2.2rem; margin-bottom: var(--sp-4); display: block; }
-
-.impact-num {
-  font-family: var(--font-light);
-  font-size: var(--fs-2xl);
-  font-style: italic;
-  color: var(--gold-300);
+.proker-output-icon {
+  font-size: 1.8rem;
   line-height: 1;
+}
+
+.proker-output-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-style: italic;
+  color: var(--parchment-300);
   margin-bottom: var(--sp-2);
+  line-height: 1.35;
 }
 
-.impact-label {
+.proker-output-location {
   font-family: var(--font-caps);
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--parchment-800);
+  color: var(--gold-300);
+  margin-bottom: var(--sp-3);
 }
 
-/* Progress bars */
-.impact-bars {
+.proker-output-desc {
+  font-family: var(--font-serif);
+  font-size: var(--fs-xs);
+  color: var(--parchment-700);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: var(--sp-4);
+}
+
+.proker-output-footer {
+  border-top: 1px dashed rgba(194, 160, 112, 0.2);
+  padding-top: var(--sp-3);
+}
+
+.proker-output-tag {
+  font-family: var(--font-caps);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  color: var(--gold-400);
+  text-transform: uppercase;
+}
+
+/* Refleksi Pengabdian Quote Card */
+.field-reflection-card {
   position: relative;
   z-index: 1;
+  background: rgba(12, 8, 5, 0.6);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-md);
+  padding: var(--sp-8) var(--sp-8);
+  margin-bottom: var(--sp-10);
+  text-align: center;
+  box-shadow: inset 0 0 20px rgba(168, 116, 32, 0.1);
 }
 
-.impact-bar-row {
-  margin-bottom: var(--sp-5);
+.reflection-quote-icon {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--gold-300);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: -1.5rem;
 }
 
-.impact-bar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: var(--sp-2);
-}
-
-.impact-bar-label {
-  font-family: var(--font-serif);
-  font-size: var(--fs-sm);
+.reflection-quote-text {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
   font-style: italic;
-  color: var(--parchment-600);
+  color: var(--parchment-300);
+  line-height: 1.7;
+  max-width: 780px;
+  margin: 0 auto var(--sp-4);
 }
 
-.impact-bar-pct {
-  font-family: var(--font-light);
-  font-size: var(--fs-sm);
-  font-style: italic;
+.reflection-author {
+  font-family: var(--font-caps);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--gold-400);
 }
 
-.impact-bar-track {
-  height: 3px;
-  background: rgba(194,160,112,0.15);
-  border-radius: 2px;
-  overflow: hidden;
+/* Deliverables Section */
+.deliverables-section {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(194, 160, 112, 0.25);
+  padding-top: var(--sp-8);
 }
 
-@media (max-width: 900px) {
-  .impact-grid { grid-template-columns: repeat(2, 1fr); }
+.deliverables-heading {
+  font-family: var(--font-caps);
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-300);
+  text-align: center;
+  margin-bottom: var(--sp-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
 }
-@media (max-width: 480px) {
-  .impact-grid { grid-template-columns: repeat(2, 1fr); }
+
+.deliverables-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-4);
+}
+
+.deliverable-card {
+  background: rgba(26, 16, 6, 0.35);
+  border: 1px solid rgba(194, 160, 112, 0.18);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-4);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  transition: background var(--transition-base);
+}
+
+.deliverable-card:hover {
+  background: rgba(26, 16, 6, 0.6);
+  border-color: rgba(194, 160, 112, 0.35);
+}
+
+.deliverable-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.deliverable-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  color: var(--parchment-300);
+  margin-bottom: 2px;
+}
+
+.deliverable-detail {
+  font-family: var(--font-serif);
+  font-size: var(--fs-xs);
+  color: var(--parchment-700);
+  line-height: 1.5;
+}
+
+@media (max-width: 1024px) {
+  .proker-output-grid { grid-template-columns: repeat(2, 1fr); }
+  .deliverables-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .proker-output-grid { grid-template-columns: 1fr; }
+  .deliverables-grid { grid-template-columns: 1fr; }
+  .field-reflection-card { padding: var(--sp-6) var(--sp-4); }
 }
 
 /* ==============================

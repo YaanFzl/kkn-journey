@@ -89,6 +89,7 @@ const photos = [
       {photos.map((photo, i) => (
         <div
           class="gallery-item"
+          data-date={photo.day}
           tabindex="0"
           role="button"
           aria-label={`Buka foto ${i + 1}: ${photo.title}`}

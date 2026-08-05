@@ -1,47 +1,137 @@
 ---
-// Timeline.astro — Roman Numeral Chapter Cards
+// Timeline.astro — Roman Numeral Chapter Cards with Logbook Overlay
 const weeks = [
   {
     roman:  'I',
-    range:  '13 — 19 Juli',
-    badge:  { label: 'Week 01', type: 'badge-crimson' },
+    range:  '13 — 19 Juli 2026',
+    badge:  { label: 'Minggu 01', type: 'badge-crimson' },
     image:  '/assets/images/week1.png',
-    imageAlt: 'Minggu pertama – tiba di Desa Angsana',
+    imageAlt: 'Minggu pertama – Kedatangan & Orientasi',
     title:  'Kedatangan & Orientasi',
-    desc:   'Tiba di Desa Angsana, disambut aparat desa dan tokoh masyarakat nelayan. Melakukan pemetaan wilayah pesisir dan koordinasi awal program kerja bersama kelompok tani dan nelayan setempat.',
-    tags:   ['Pesisir', 'Orientasi', 'Adaptasi'],
+    desc:   'Tiba di Desa Angsana, disambut aparat desa dan tokoh masyarakat. Melakukan koordinasi awal, perkenalan program kerja, serta mulai beradaptasi dengan lingkungan dan budaya masyarakat setempat.',
+    tags:   ['Koordinasi', 'Orientasi', 'Adaptasi'],
+    days: [
+      { date: '13 Juli 2026', dayName: 'Minggu', activities: ['Koordinasi dengan Kepala Desa'] },
+      { date: '14 Juli 2026', dayName: 'Senin', activities: ['Kunjungan Kepala Kecamatan Angsana ke Posko KKN'] },
+      { date: '15 Juli 2026', dayName: 'Selasa', activities: [
+        'Perkenalan Mahasiswa KKN dengan Kepala Desa Angsana beserta Aparat Desa Angsana sekaligus menyampaikan Program Kerja yang dibawakan Mahasiswa KKN',
+        'Melakukan pemilahan sampah untuk ditukarkan dengan paket sembako pada acara yang diselenggarakan oleh PT. BIB dan mitra kerja',
+      ]},
+      { date: '16 Juli 2026', dayName: 'Rabu', activities: ['Ikut serta acara dari PT BIB dan Mitra Kerja yaitu melakukan pemilahan sampah dan penukaran sampah menjadi paket sembako'] },
+      { date: '17 Juli 2026', dayName: 'Kamis', activities: [
+        'Senam rutin 2 minggu sekali yang dilaksanakan di Desa Purwodadi',
+        'Kunjungan ke SDN Angsana',
+        'Menghadiri acara keagamaan',
+      ]},
+      { date: '18 Juli 2026', dayName: 'Jumat', activities: [
+        'Menghadiri acara yasinan ibu–ibu sekaligus melakukan pendataan tahap awal pemilahan sampah',
+        'Kumpul–kumpul dengan bapak Kepala Desa dan aparat desa',
+      ]},
+      { date: '19 Juli 2026', dayName: 'Sabtu', activities: [
+        'Ikut serta dalam kegiatan gotong royong di lingkungan Koperasi Merah Putih Desa Angsana',
+        'Perbaikan jalan menuju wisata Pantai Angsana',
+      ]},
+    ],
   },
   {
     roman:  'II',
-    range:  '20 — 28 Juli',
-    badge:  { label: 'Week 02', type: 'badge-gold' },
+    range:  '20 — 26 Juli 2026',
+    badge:  { label: 'Minggu 02', type: 'badge-gold' },
     image:  '/assets/images/week2.png',
-    imageAlt: 'Minggu kedua – pembibitan mangrove',
-    title:  'Edukasi & Konservasi',
-    desc:   'Memulai bimbingan belajar anak-anak pesisir dan kelas alam. Persiapan pembibitan 1.500 bibit mangrove bersama Pokdarwis untuk memulihkan ekosistem hutan bakau yang rusak.',
-    tags:   ['Mangrove', 'Edukasi', 'Konservasi'],
+    imageAlt: 'Minggu kedua – Edukasi & Persiapan Ecoenzym',
+    title:  'Edukasi & Sosialisasi',
+    desc:   'Memulai program sosialisasi ke sekolah-sekolah tentang TPS3R, Ecoenzym, dan pemilahan sampah. Melakukan koordinasi survey kawasan mangrove untuk persiapan program kopi mangrove.',
+    tags:   ['Ecoenzym', 'Edukasi', 'Mangrove'],
+    days: [
+      { date: '20 Juli 2026', dayName: 'Minggu', activities: ['Persiapan bahan untuk pembuatan Ecoenzym'] },
+      { date: '21 Juli 2026', dayName: 'Senin', activities: [
+        'Melaksanakan program kerja sosialisasi ke SDN Angsana tentang cara membedakan sampah Organik dan Anorganik serta menjelaskan apa itu TPS3R',
+        'Keliling RT 1 bersama kawan–kawan KKN',
+      ]},
+      { date: '22 Juli 2026', dayName: 'Selasa', activities: [
+        'Rapat pemantapan untuk sosialisasi ke MTs Syarif Ali dengan materi keberlanjutan Ecoenzym',
+        'Persiapan bahan untuk pembuatan Ecoenzym',
+      ]},
+      { date: '23 Juli 2026', dayName: 'Rabu', activities: [
+        'Berkunjung ke MTs Syarif Ali untuk melakukan program kerja tentang apa itu Ecoenzym dan manfaat kedepannya',
+        'Rapat dengan Dinas Lingkungan Hidup bersama Kepala Desa',
+        'Melakukan rapat pemantapan untuk terlaksananya program kerja tentang TPS3R dan pemilahan sampah di SMAN 1 Angsana',
+      ]},
+      { date: '24 Juli 2026', dayName: 'Kamis', activities: ['Kunjungan ke SMAN 1 Angsana dengan tujuan memberikan materi TPS3R dan pemilahan sampah'] },
+      { date: '25 Juli 2026', dayName: 'Jumat', activities: ['Koordinasi dengan Pak Nuh selaku teman–teman dari Hijau Lestari untuk melakukan survey kawasan mangrove untuk berlangsungnya program kerja pembuatan kopi mangrove'] },
+      { date: '26 Juli 2026', dayName: 'Sabtu', activities: [
+        'Melakukan survei ke kawasan mangrove',
+        'Menghadiri acara keagamaan',
+      ]},
+    ],
   },
   {
     roman:  'III',
-    range:  '29 Jul — 7 Agust',
-    badge:  { label: 'Week 03', type: 'badge-sepia' },
+    range:  '27 Jul — 2 Agust 2026',
+    badge:  { label: 'Minggu 03', type: 'badge-sepia' },
     image:  '/assets/images/week3.png',
-    imageAlt: 'Minggu ketiga – transplantasi karang',
-    title:  'Transplantasi Karang',
-    desc:   'Terjun langsung ke perairan Pantai Angsana bersama nelayan lokal untuk melakukan transplantasi karang menggunakan media meja besi. Upaya memulihkan terumbu karang yang kian terancam.',
-    tags:   ['Terumbu Karang', 'Laut', 'Nelayan'],
+    imageAlt: 'Minggu ketiga – Sosialisasi Mangrove & UMKM',
+    title:  'Mangrove, UMKM & Lingkungan',
+    desc:   'Pelaksanaan sosialisasi pemanfaatan buah mangrove, digitalisasi UMKM, kunjungan ke TPS3R, Jumat Bersih, serta sosialisasi Pupuk Organik Cair kepada warga desa.',
+    tags:   ['Mangrove', 'UMKM', 'POC'],
+    days: [
+      { date: '27 Juli 2026', dayName: 'Minggu', activities: ['Melakukan rapat pemantapan terkait sosialisasi pemanfaatan buah mangrove (Rhizophora mucronata), gemar ikan (pembuatan dimsum dari ikan Lajang), dan Digitalisasi UMKM'] },
+      { date: '28 Juli 2026', dayName: 'Senin', activities: ['Pelaksanaan program kerja sosialisasi pemanfaatan buah mangrove (Rhizophora mucronata), gemar ikan (pembuatan dimsum dari ikan Lajang), dan Digitalisasi UMKM'] },
+      { date: '29 Juli 2026', dayName: 'Selasa', activities: ['Berkunjung ke kantor Kepala Desa Angsana dan membantu kegiatan di kantor desa'] },
+      { date: '30 Juli 2026', dayName: 'Rabu', activities: ['Berkunjung ke TPS3R Desa Angsana sekaligus membantu memilah sampah'] },
+      { date: '31 Juli 2026', dayName: 'Kamis', activities: ['Melakukan Jumat Bersih di lingkungan Kantor Desa Angsana dan memasang bendera merah putih untuk persiapan Hari Kemerdekaan HUT RI ke-81'] },
+      { date: '1 Agustus 2026', dayName: 'Jumat', activities: ['Sosialisasi dengan warga desa tentang Pupuk Organik Cair (POC) serta demonstrasi pembuatannya dan manfaatnya'] },
+      { date: '2 Agustus 2026', dayName: 'Sabtu', activities: ['Evaluasi mingguan program kerja dan dokumentasi kegiatan kelompok'] },
+    ],
   },
   {
     roman:  'IV',
-    range:  '8 — 15 Agustus',
-    badge:  { label: 'Week 04', type: 'badge-ink' },
+    range:  '3 — 15 Agustus 2026',
+    badge:  { label: 'Minggu 04', type: 'badge-ink' },
     image:  '/assets/images/week4.png',
-    imageAlt: 'Minggu keempat – gelar karya dan pamitan',
+    imageAlt: 'Minggu keempat – Gelar Karya & Pamitan',
     title:  'Gelar Karya & Pamitan',
-    desc:   'Pameran produk olahan ikan khas pesisir, penyerahan laporan program kerja, dan malam perpisahan penuh haru bersama masyarakat nelayan Desa Angsana yang telah menjadi keluarga.',
-    tags:   ['Gelar Karya', 'UMKM', 'Perpisahan'],
+    desc:   'Puncak pengabdian: penyusunan laporan akhir KKN, persiapan pameran UMKM pesisir, malam keakraban perpisahan, serta penyerahan kenang-kenangan dan pamitan resmi.',
+    tags:   ['Gelar Karya', 'Puncak KKN', 'Perpisahan'],
+    isFinale: true,
+    phases: [
+      {
+        phase: 'Fase I — Finalisasi & Gelar Karya',
+        dateRange: '3 — 13 Agustus 2026',
+        activities: [
+          'Penyusunan laporan akhir KKN dan rekapitulasi data program kerja TPS3R & POC',
+          'Persiapan pameran produk UMKM olahan pesisir (dimsum ikan Lajang & kopi mangrove)',
+          'Koordinasi persiapan teknis, dekorasi, dan gladi bersih Gelar Karya bersama perangkat desa',
+          'Pelaksanaan Gelar Karya dan pameran produk UMKM Desa Angsana',
+        ],
+        photoLinked: false,
+      },
+      {
+        phase: 'Fase II — Puncak Malam Perpisahan',
+        dateRange: '14 Agustus 2026',
+        dayName: 'Kamis',
+        activities: [
+          'Malam perpisahan dan keakraban penuh haru bersama seluruh warga, aparat desa, dan tokoh masyarakat Desa Angsana',
+        ],
+        photoLinked: true,
+        galleryDate: '14 Agustus 2026',
+      },
+      {
+        phase: 'Fase III — Pelepasan & Pamitan Resmi',
+        dateRange: '15 Agustus 2026',
+        dayName: 'Jumat',
+        activities: [
+          'Penyerahan laporan resmi KKN dan kenang-kenangan kepada Kepala Desa Angsana & Perangkat Desa',
+          'Pelepasan mahasiswa KKN Kelompok 2 Universitas Lambung Mangkurat',
+        ],
+        photoLinked: false,
+      },
+    ],
   },
 ];
+
+// Dates that have photos in Bab 3 Gallery
+const galleryDates = ['13 Juli 2026','21 Juli 2026','25 Juli 2026','28 Juli 2026','14 Agustus 2026'];
 ---
 
 <section id="timeline" aria-label="Timeline Perjalanan KKN">
@@ -75,12 +165,7 @@ const weeks = [
 
           <!-- Photo -->
           <div class="week-img-wrap">
-            <img
-              src={w.image}
-              alt={w.imageAlt}
-              class="week-img"
-              loading="lazy"
-            />
+            <img src={w.image} alt={w.imageAlt} class="week-img" loading="lazy" />
             <div class="week-img-overlay"></div>
             <div class="week-img-badge">
               <span class={`badge ${w.badge.type}`}>{w.badge.label}</span>
@@ -97,10 +182,140 @@ const weeks = [
               ))}
             </div>
           </div>
+
+          <!-- Open logbook overlay button -->
+          <button class="btn-open-logbook" data-week={String(i)} type="button">
+            <span class="btn-open-logbook-text">📖 Buka Logbook</span>
+            <span class="btn-open-logbook-arrow">→</span>
+          </button>
         </div>
       ))}
     </div>
 
     <div class="ornament-rule reveal">❧</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       LOGBOOK OVERLAY — Full-screen Journal Page
+       ═══════════════════════════════════════════ -->
+  <div id="logbook-overlay" role="dialog" aria-modal="true" aria-label="Logbook Harian" aria-hidden="true">
+    <!-- Backdrop -->
+    <div class="logbook-backdrop"></div>
+
+    <!-- Close button -->
+    <button id="logbook-close" aria-label="Tutup logbook">✕</button>
+
+    <!-- Journal page container -->
+    <div class="logbook-journal">
+      <!-- Journal header (populated by JS with week data) -->
+      <div class="logbook-journal-header">
+        <div class="logbook-journal-roman" id="logbook-roman">I</div>
+        <div class="logbook-journal-meta">
+          <h3 class="logbook-journal-title" id="logbook-title">Kedatangan & Orientasi</h3>
+          <p class="logbook-journal-range" id="logbook-range">13 — 19 Juli 2026</p>
+        </div>
+      </div>
+
+      <div class="logbook-journal-divider"></div>
+
+      <!-- Scrollable content -->
+      <div class="logbook-journal-scroll">
+        {weeks.map((w, wIdx) => (
+          <div class="logbook-week-content" data-week-content={String(wIdx)}>
+            {w.isFinale ? (
+              /* Special Grand Finale Layout for Page 4 (Minggu IV) */
+              <div class="logbook-finale-container">
+                <div class="logbook-finale-badge">
+                  <span class="orn">❧</span> Bab Puncak & Epilog Pengabdian
+                </div>
+
+                {w.phases?.map((p, pIdx) => (
+                  <div class={`logbook-finale-card ${p.photoLinked ? 'featured' : ''}`}>
+                    <div class="logbook-finale-card-header">
+                      <span class="logbook-finale-phase">{p.phase}</span>
+                      <span class="logbook-finale-date">📅 {p.dateRange}</span>
+                    </div>
+                    <ul class="logbook-activities">
+                      {p.activities.map(act => (
+                        <li class="logbook-activity-item">{act}</li>
+                      ))}
+                    </ul>
+                    <div class="logbook-entry-photo">
+                      {p.photoLinked ? (
+                        <button class="btn-view-gallery" data-gallery-date={p.galleryDate} type="button">
+                          🖼️ Lihat Foto Malam Perpisahan di Galeri ↗
+                        </button>
+                      ) : (
+                        <span class="logbook-photo-empty">📷 Foto belum tersedia</span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+
+                <!-- Wax Seal Epilogue Card -->
+                <div class="logbook-epilogue-card">
+                  <div class="wax-seal-mini">KKN 02</div>
+                  <div class="logbook-epilogue-text">
+                    <p class="epilogue-quote">
+                      "Satu bulan mengabdi, seumur hidup menginspirasi. Terima kasih Desa Angsana telah menjadi rumah kedua kami."
+                    </p>
+                    <p class="epilogue-signature">
+                      — Tim KKN Kelompok 2 Universitas Lambung Mangkurat (2026)
+                    </p>
+                  </div>
+                  <a href="#gallery" class="btn-epilogue-link" id="btn-epilogue-gallery">
+                    🎞️ Lihat Galeri Foto Lapangan (Bab III) ↗
+                  </a>
+                </div>
+              </div>
+            ) : (
+              /* Standard Daily Logbook Layout for Weeks I, II, III */
+              w.days?.map((day, dIdx) => (
+                <div class="logbook-entry">
+                  <div class="logbook-entry-date">
+                    <span class="logbook-entry-num">{String(dIdx + 1).padStart(2, '0')}</span>
+                    <div class="logbook-entry-date-info">
+                      <span class="logbook-entry-date-text">{day.date}</span>
+                      <span class="logbook-entry-day-name">{day.dayName}</span>
+                    </div>
+                  </div>
+                  <div class="logbook-entry-body">
+                    {day.activities.map(act => (
+                      <p class="logbook-entry-activity">{act}</p>
+                    ))}
+                    <div class="logbook-entry-photo">
+                      {galleryDates.includes(day.date) ? (
+                        <button class="btn-view-gallery" data-gallery-date={day.date} type="button">
+                          🖼️ Lihat di Galeri ↗
+                        </button>
+                      ) : (
+                        <span class="logbook-photo-empty">📷 Foto belum tersedia</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        ))}
+      </div>
+
+      <!-- Footer navigation -->
+      <div class="logbook-journal-footer">
+        <button id="logbook-prev" class="logbook-nav-btn" type="button">
+          <span class="logbook-nav-arrow">‹</span>
+          <span class="logbook-nav-label" id="logbook-prev-label">Minggu I</span>
+        </button>
+        <div class="logbook-page-indicator">
+          <span id="logbook-page-current">1</span>
+          <span class="logbook-page-sep">/</span>
+          <span>4</span>
+        </div>
+        <button id="logbook-next" class="logbook-nav-btn" type="button">
+          <span class="logbook-nav-label" id="logbook-next-label">Minggu II</span>
+          <span class="logbook-nav-arrow">›</span>
+        </button>
+      </div>
+    </div>
   </div>
 </section>

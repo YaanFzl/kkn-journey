@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   animateCursor();
 
   // Cursor hover effect on interactive elements
-  const hoverEls = document.querySelectorAll('a, button, .gallery-item, .week-card, .impact-card, .glass-card, .btn-expand-logbook, .btn-view-gallery');
+  const hoverEls = document.querySelectorAll('a, button, .gallery-item, .float-photo, .week-card, .impact-card, .glass-card, .btn-expand-logbook, .btn-view-gallery');
   hoverEls.forEach((el) => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -64,9 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
     new window.ScrollController();
   }
 
-  /* ——— Gallery ——— */
+  /* ——— Gallery (lightbox) ——— */
   if (window.Gallery) {
     new window.Gallery();
+  }
+
+  /* ——— Floating Gallery ——— */
+  if (window.FloatingGallery) {
+    new window.FloatingGallery();
   }
 
   /* ——— Navigation ——— */
